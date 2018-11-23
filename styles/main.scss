@@ -2,7 +2,8 @@
 @import "global/utils",
 "global/vars";
 //COMPONENTS
-@import "components/header";
+@import "components/header",
+"components/spinner.scss";
 //MODULES
 @import "modules/inputs",
 "modules/buttons";

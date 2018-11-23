@@ -22,7 +22,7 @@ function Dashboard(props) {
                 receips.map(item => (
                     <div key={item.id}>
                         <Link to={`/admin/ricetta/${item.id}`}>
-                            {item.cognome}
+                            {item.titolo}
                         </Link>
                     </div>
                 )

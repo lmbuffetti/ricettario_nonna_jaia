@@ -52,7 +52,6 @@ Website.propTypes = {
     menuPosition: PropTypes.string,
     classPage: PropTypes.string,
     titleHeader: PropTypes.string,
-    dispatch: PropTypes.func.isRequired,
     loggedUserRole: PropTypes.string,
     loggedUser: PropTypes.object,
 };

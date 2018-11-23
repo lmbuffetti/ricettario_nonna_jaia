@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import { change, Field } from 'redux-form';
 import { bindActionCreators } from 'redux';
-import { saveEvents } from '../../actions/firebaseActions';
+import { saveEvents, updateEvents } from '../../actions/firebaseActions';
 import { reduxForm } from 'redux-form';
 import { withRouter } from 'react-router-dom';
 import connect from 'react-redux/es/connect/connect';
@@ -25,12 +25,21 @@ function Receips(props) {
         handleSaveData,
         form,
         formValue,
+        update,
+        id,
+        handleUpdateData,
     } = props;
 
     function saveData(e) {
         e.preventDefault();
-        console.log('test', loggedUserRole, formValue.values);
-        handleSaveData(formValue.values);
+        console.log('test', loggedUserRole, formValue.values, update);
+        if (update) {
+            const body = formValue.values;
+            body.selector = id;
+            handleUpdateData(body);
+        } else {
+            handleSaveData(formValue.values);
+        }
     }
     return (
         <form className="know-you-form">
@@ -74,18 +83,31 @@ function Receips(props) {
     )
 }
 
-const mapStateToProps = state => ({
-    user: get(state, 'user', {}),
-    users: get(state, 'users', {}),
-    isLoading: get(state, 'common.isLoading', 1),
-    loggedUser: get(state, 'firebaseOption.profile.providerData[0]', null),
-    loggedUserRole: get(state, 'firebaseOption.profile.role', null),
-    loadedFirebase: get(state, 'firebaseOption.auth.isLoaded', null),
-    formValue: get(state, 'form.saveReceips', null),
-});
+const mapStateToProps = (state, props) => {
+    const currentId = get(props, 'match.params.id', null);
+    const allEvents = get(state, 'firebase.events', []);
+    const curEvent = allEvents.find(item => item.id === currentId);
+    return ({
+        initialValues: {
+            titolo: get(curEvent, 'titolo', null),
+            difficolta: get(curEvent, 'difficolta', null),
+            ingredients: get(curEvent, 'ingredients', null),
+        },
+        id: currentId,
+        update: currentId !== null,
+        user: get(state, 'user', {}),
+        users: get(state, 'users', {}),
+        isLoading: get(state, 'common.isLoading', 1),
+        loggedUser: get(state, 'firebaseOption.profile.providerData[0]', null),
+        loggedUserRole: get(state, 'firebaseOption.profile.role', null),
+        loadedFirebase: get(state, 'firebaseOption.auth.isLoaded', null),
+        formValue: get(state, 'form.saveReceips', null),
+    });
+}
 
 const mapDispatchToProps = dispatch => ({
     handleSaveData: bindActionCreators(saveEvents, dispatch),
+    handleUpdateData: bindActionCreators(updateEvents, dispatch),
 })
 
 const initializeForm = reduxForm({
