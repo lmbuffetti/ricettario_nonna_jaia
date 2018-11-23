@@ -10,7 +10,6 @@ class Slide extends Component {
     render() {
         return (
             <div className="App build_page">
-                <a href="/login">Login</a>
                 <h1>TEST</h1>
             </div>
         );

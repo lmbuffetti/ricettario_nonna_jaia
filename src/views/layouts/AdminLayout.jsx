@@ -6,20 +6,21 @@ import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import get from 'lodash/get';
 import { requestsReset } from '../../actions/CommonActions';
-import { loadEvents } from '../../actions/firebaseActions';
 import Header from '../../components/Header';
 
-class Website extends Component {
+class AdminLayout extends Component {
     constructor(props) {
         super(props);
 
         const {
-            handleRequestsReset,
-            handleLoadEvents
+            loggedUserRole,
+            loadedFirebase,
+            history,
         } = this.props;
 
-        handleLoadEvents();
-        handleRequestsReset();
+        if (loadedFirebase && loggedUserRole !== 'admin') {
+            history.push('/');
+        }
     }
     componentWillMount() {
         const { titleHeader } = this.props;
@@ -33,6 +34,7 @@ class Website extends Component {
             loggedUser,
             loggedUserRole,
         } = this.props;
+        console.log(loggedUser);
         return (
             <div className={classPage} id="ricettario">
                 <Header user={loggedUser} role={loggedUserRole} />
@@ -42,11 +44,10 @@ class Website extends Component {
     }
 }
 
-Website.propTypes = {
+AdminLayout.propTypes = {
     // isLoading: PropTypes.bool,
     children: PropTypes.object.isRequired,
     handleRequestsReset: PropTypes.func.isRequired,
-    handleLoadEvents: PropTypes.func.isRequired,
     menuHeader: PropTypes.string,
     menuFooter: PropTypes.string,
     menuPosition: PropTypes.string,
@@ -55,8 +56,10 @@ Website.propTypes = {
     dispatch: PropTypes.func.isRequired,
     loggedUserRole: PropTypes.string,
     loggedUser: PropTypes.object,
+    loadedFirebase: PropTypes.bool,
+    history: PropTypes.object.isRequired,
 };
-Website.defaultProps = {
+AdminLayout.defaultProps = {
     // isLoading: true,
     menuHeader: '',
     menuFooter: '',
@@ -65,6 +68,7 @@ Website.defaultProps = {
     titleHeader: '',
     loggedUser: null,
     loggedUserRole: null,
+    loadedFirebase: false
 };
 
 const mapStateToProps = state => ({
@@ -73,11 +77,16 @@ const mapStateToProps = state => ({
     isLoading: get(state, 'common.isLoading', 1),
     loggedUser: get(state, 'firebaseOption.profile.providerData[0]', null),
     loggedUserRole: get(state, 'firebaseOption.profile.role', null),
+    loadedFirebase: get(state, 'firebaseOption.auth.isLoaded', null),
 });
 
 const mapDispatchToProps = dispatch => ({
     handleRequestsReset: bindActionCreators(requestsReset, dispatch),
-    handleLoadEvents: bindActionCreators(loadEvents, dispatch),
-});
+})
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Website));
+const initializeForm = reduxForm({
+    form: 'test',
+    enableReinitialize: true,
+})(AdminLayout);
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(initializeForm));

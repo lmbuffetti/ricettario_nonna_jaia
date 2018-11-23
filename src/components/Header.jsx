@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import LoginButton from './Login'
+import logo from '../../static/img/logo.png';
 
 function Header(props) {
-    console.log(props);
     const {
         user,
         role,
     } = props;
-
     return (
-        <header>
-            Test
+        <header id="mainHeader">
+            <div className="container dis-f ali-c jus-bt">
+            <img src={`/${logo}`} alt="Logo" />
             {
                 role !== null
                 ?
@@ -18,6 +18,7 @@ function Header(props) {
                     :
                     <LoginButton />
             }
+            </div>
         </header>
     )
 }

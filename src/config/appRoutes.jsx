@@ -3,8 +3,9 @@ import { Switch } from 'react-router-dom';
 import { RouteWithLayout } from '../utils/route/route.helper';
 
 import WebsiteRoutes from './routes/websiteRoutes';
+import adminRoutes from './routes/adminRoutes';
 
-const allRoutes = WebsiteRoutes;
+const allRoutes = WebsiteRoutes.concat(adminRoutes);
 
 export default (
     <Switch>

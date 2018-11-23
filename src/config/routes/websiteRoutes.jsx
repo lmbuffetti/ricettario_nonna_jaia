@@ -1,5 +1,5 @@
 import WebsiteLayout from '../../views/layouts/Website';
-import HomePage from '../../views/pages/homepage';
+import HomePage from '../../views/website/homepage';
 
 const classHome = 'htmlPage home';
 const menuAdviser = 'advisers';
