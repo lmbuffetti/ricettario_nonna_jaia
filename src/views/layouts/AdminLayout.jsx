@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import get from 'lodash/get';
 import { requestsReset } from '../../actions/CommonActions';
 import Header from '../../components/Header';
+import { loadEvents } from '../../actions/firebaseActions';
 
 class AdminLayout extends Component {
     constructor(props) {
@@ -16,11 +17,13 @@ class AdminLayout extends Component {
             loggedUserRole,
             loadedFirebase,
             history,
+            handleLoadEvents,
         } = this.props;
 
         if (loadedFirebase && loggedUserRole !== 'admin') {
             history.push('/');
         }
+        handleLoadEvents();
     }
     componentWillMount() {
         const { titleHeader } = this.props;
@@ -58,6 +61,7 @@ AdminLayout.propTypes = {
     loggedUser: PropTypes.object,
     loadedFirebase: PropTypes.bool,
     history: PropTypes.object.isRequired,
+    handleLoadEvents: PropTypes.func.isRequired,
 };
 AdminLayout.defaultProps = {
     // isLoading: true,
@@ -82,6 +86,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     handleRequestsReset: bindActionCreators(requestsReset, dispatch),
+    handleLoadEvents: bindActionCreators(loadEvents, dispatch),
 })
 
 const initializeForm = reduxForm({

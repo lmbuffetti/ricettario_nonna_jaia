@@ -1,4 +1,8 @@
+//GLOBAL
+@import "global/utils",
+"global/vars";
 //COMPONENTS
 @import "components/header";
-//GLOBAL
-@import "global/utils";
+//MODULES
+@import "modules/inputs",
+"modules/buttons";

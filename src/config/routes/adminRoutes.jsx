@@ -33,4 +33,17 @@ export default [
         titlePage: `${titlePage} Homepage`,
         titleHeader: `${titlePage} Homepage`,
     },
+    {
+        exact: true,
+        layout: AdminLayout,
+        path: '/admin/ricetta/:id',
+        component: Receips,
+        classPage: classHome,
+        menu: 'website',
+        menuFooter: menuAdviser,
+        menuName: '',
+        menuPosition: 'scroll_header',
+        titlePage: `${titlePage} Homepage`,
+        titleHeader: `${titlePage} Homepage`,
+    },
 ];

@@ -1,11 +1,13 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
+import thunk from 'redux-thunk';
 import { rootReducer } from '../reducers';
 import UserMiddleware from '../middlewares/UserMiddleware';
-import WebappMiddleware from '../middlewares/WebappMiddleware';
+import WebappMiddleware from '../middlewares/firebaseMiddleware';
 import CommonMiddleware from '../middlewares/CommonMiddleware';
 import firebase from 'firebase'
 import { getFirebase, reactReduxFirebase } from 'react-redux-firebase'
+import { fbConfig } from '../helpers/constants';
 
 const middlewares = [thunkMiddleware];
 
@@ -16,15 +18,6 @@ if (process.env.NODE_ENV === 'development') {
     middlewares.push(loggerMiddleware);
 }
 
-// Firebase config
-const fbConfig = {
-    apiKey: "jjj",
-    authDomain: "xxx",
-    databaseURL: "xxx",
-    projectId: "xxx",
-    storageBucket: "xxx",
-    messagingSenderId: "xxx"
-};
 // react-redux-firebase options
 const rrfConfig = {
     userProfile: 'users',
@@ -53,6 +46,7 @@ function configureStore(data) {
                 UserMiddleware,
                 CommonMiddleware,
                 WebappMiddleware,
+                thunk.withExtraArgument(getFirebase)
             ),
         ),
     );

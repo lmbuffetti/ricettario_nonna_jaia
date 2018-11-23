@@ -14,8 +14,9 @@ const fetchPlan = store => next => (action) => {
             db.once('value').then(function(snapshot) {
                 const listEvent = snapshot.val();
                 const event = [];
-                Object.keys(listEvent).map(item => {
+                Object.keys(listEvent).map((item, i) => {
                     event.push(listEvent[item]);
+                    event[i].id = item;
                 });
                 store.dispatch({type: SET_EVENTS, payload: event})
             });
@@ -25,6 +26,7 @@ const fetchPlan = store => next => (action) => {
             firebase.database().ref('Event/').push(
                 action.payload
             );
+            store.dispatch({type: LOAD_EVENTS});
             break;
         default:
             next(action);

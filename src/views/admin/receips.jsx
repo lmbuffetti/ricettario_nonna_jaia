@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import { change, Field } from 'redux-form';
@@ -9,7 +9,7 @@ import { withRouter } from 'react-router-dom';
 import connect from 'react-redux/es/connect/connect';
 import InputCustom from '../../components/InputCustom';
 import Select from '../../components/Select';
-import MultipleTextareaBlock from '../../components/MultipleTextareaBlock';
+import MultipleDoubleInput from '../../components/MultipleDoubleInput';
 import {
     booleanRequired,
     required,
@@ -19,6 +19,7 @@ import {
 } from '../../utils/validation.helper';
 
 function Receips(props) {
+    const [isSubmit, setIsSubmit] = useState(false);
     const {
         loggedUserRole,
         handleSaveData,
@@ -32,37 +33,40 @@ function Receips(props) {
         handleSaveData(formValue.values);
     }
     return (
-        <form className="know-you-form col span-8 dis-f fd-c">
-            <div className="dis-f jc-sb">
-                <MultipleTextareaBlock
-                    name="citizenships"
-                    fieldsName="citizenships"
-                    extraClasses="mt-2rem"
-                    label="+ Add another citizenship"
-                    placeholder="Select country"
-                    buttonLabel="Remove Citizenship"
-                    blockLabel="What is your citizenship?"
+        <form className="know-you-form">
+            <div>
+                <Field
+                    name="titolo"
+                    component={InputCustom}
+                    extraClasses=""
+                    label="Nome ricetta"
+                    placeholder=""
+                    isShowErrors={isSubmit}
+                    validate={[
+                        required,
+                    ]}
                 />
                 <Field
-                    name="nome"
+                    name="difficolta"
                     component={Select}
                     extraClasses="span-4 col-last"
-                    label="Where were you born?"
+                    label="Difficoltà"
                     placeholder="Select country"
-                    options={[{code:0, name:'test'},{code:1, name:'testalo'}]}
+                    options={[
+                        {id: 0, name: 'Facile', code:'facile'},
+                        {id: 0, name: 'Medio', code:'medio'},
+                        {id: 0, name: 'Difficile', code:'difficile'}
+                    ]}
                     validate={[
                         required,
                     ]}
                 />
-                <Field
-                    name="cognome"
-                    component={InputCustom}
-                    extraClasses="span-4 col-last"
-                    label="Where were you born?"
-                    placeholder="Select country"
-                    validate={[
-                        required,
-                    ]}
+                <MultipleDoubleInput
+                    name="ingredients"
+                    fieldsName="ingredients"
+                    extraClasses="mt-2rem"
+                    label="Ingredients"
+                    labelBis="Quantity"
                 />
                 <button onClick={(e) => saveData(e)}>SAVE</button>
             </div>

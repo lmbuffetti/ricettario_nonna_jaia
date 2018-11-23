@@ -6,7 +6,7 @@ import {
 } from '../actions/types/firebaseTypes';
 
 export const defaultState = {
-    events: {}
+    events: [],
 };
 
 export default handleActions({

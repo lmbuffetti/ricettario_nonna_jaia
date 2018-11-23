@@ -1,0 +1,214 @@
+/*
+  INPUT, TEXTAREA, SELECT
+*/
+
+// SHARED
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  background-color: $white;
+  border: 1px solid $borderGray;
+  border-radius: 4px;
+  color: $textDark;
+  outline: none;
+  padding: 18px 12px;
+  width: 100%;
+
+  &:focus {
+    @include box-shadow(0 0 4px 0 rgba($brandSecondary, 0.25));
+    border-color: $brandSecondary;
+    outline: none;
+  }
+
+  &.valid {
+    border-color: $brandGreen;
+  }
+
+  &.invalid {
+    border-color: $brandRed;
+  }
+
+  &[disabled] {
+    background-color: $inputDisabled;
+    border: 0;
+    cursor: not-allowed;
+  }
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px $bgLightGray inset;
+  }
+}
+
+input[type="text"] {
+  &:read-only {
+    background-color: #ddd;
+
+    &:focus {
+      @include box-shadow(0 0 4px 0 rgba($bgLightGray, 0.25));
+      border: 1px solid $borderGray;
+    }
+  }
+}
+
+select,
+input[type="checkbox"],
+input[type="radio"] {
+  cursor: pointer;
+  -moz-appearance: none;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-appearance: none;
+  -webkit-user-select: none;
+  appearance: none;
+}
+
+select, input[type="text"] {
+  width: 100%;
+  display: block;
+}
+
+// SELECT
+select {
+  background: url("/img/down-arrow.svg") calc(100% - 10px) / 18px no-repeat $white;
+  option {
+    height: 60px;
+  }
+}
+
+.pound-position {
+  margin-left: 1.2em;
+  margin-top: 1.4em;
+  position: absolute;
+}
+
+input[type="number"].pound-input {
+  padding-left: 3em;
+}
+
+// TEXTAREA
+.wealth-textarea {
+  height: 160px;
+  margin-top: 0.5em;
+  padding: 15px;
+}
+
+// FORM
+.form-inline {
+  padding-bottom: 48px;
+  position: relative;
+  &.pb-0 {
+    padding-bottom: 0;
+  }
+}
+
+// LABELS
+.input-label {
+  color: $brandPrimary;
+  display: block;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  min-height: 24px;
+}
+
+.checkbox-label {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+// HINT_MESSAGE
+.hint {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: 8px;
+  color: $textLightGrey;
+  font-size: 14px;
+  line-height: 16px;
+  min-height: 24px;
+
+  &-valid {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-top: 8px;
+    color: $brandGreen;
+    font-size: 14px;
+    line-height: 16px;
+    min-height: 24px;
+  }
+
+  &-dashed-button {
+    color: $darkPurple;
+  }
+
+  &-block-label {
+    color: $darkPurple;
+    margin-top: 0;
+  }
+}
+
+.input-icon {
+  position: absolute;
+  top: 55px;
+  right: 20px;
+}
+
+.radiobtn_textarea {
+  section {
+    display: inline-block;
+  }
+  input[type="radio"], input[type="checkbox"] {
+    display: none;
+  }
+  input[type="radio"]+label, input[type="checkbox"]+label {
+    background: $bgLightGray;
+    border-radius: 4px;
+    padding: 6px;
+    line-height: 21px;
+    font-size: 14px;
+    color: $grey650;
+    margin-right: 8px;
+    cursor: pointer;
+  }
+  input[type="radio"]:checked+label, input[type="checkbox"]:checked+label {
+    background: $brandPurple;
+    border-radius: 4px;
+    padding: 6px;
+    line-height: 21px;
+    font-size: 14px;
+    color: $white;
+  }
+}
+
+select.placeholder {
+  color: $grey500;
+  font-weight: 300;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: $grey500;
+  font-weight: 300;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: $grey500;
+  font-weight: 300;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: $grey500;
+  font-weight: 300;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: $grey500;
+  font-weight: 300;
+}
+.error-message {
+  position: relative;
+  margin-top: 8px;
+  color: $textLightGrey;
+
+  .message {
+    color: $brandRed;
+    font-weight: normal;
+  }
+}

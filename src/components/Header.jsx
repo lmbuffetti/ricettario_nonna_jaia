@@ -9,8 +9,8 @@ function Header(props) {
     } = props;
     return (
         <header id="mainHeader">
-            <div className="container dis-f ali-c jus-bt">
-            <img src={`/${logo}`} alt="Logo" />
+            <div className="container dis-f ali-c jus-bt mar-a">
+            <img src={logo} alt="Logo" />
             {
                 role !== null
                 ?
