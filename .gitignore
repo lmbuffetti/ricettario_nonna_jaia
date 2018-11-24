@@ -75,4 +75,4 @@ typings/
 .serverless
 
 .idea
-src/store/
+/src/config/firebaseConfig.js

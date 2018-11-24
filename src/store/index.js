@@ -7,7 +7,7 @@ import WebappMiddleware from '../middlewares/firebaseMiddleware';
 import CommonMiddleware from '../middlewares/CommonMiddleware';
 import firebase from 'firebase'
 import { getFirebase, reactReduxFirebase } from 'react-redux-firebase'
-import { fbConfig } from '../helpers/constants';
+import { fbConfig } from '../config/firebaseConfig';
 
 const middlewares = [thunkMiddleware];
 
@@ -31,7 +31,7 @@ const rrfConfig = {
     })
 };
 
-firebase.initializeApp(fbConfig);
+
 
 function configureStore(data) {
     // eslint-disable-next-line no-unused-expressions, no-underscore-dangle
@@ -40,7 +40,7 @@ function configureStore(data) {
         rootReducer,
         data,
         composeEnhancers(
-            reactReduxFirebase(firebase, rrfConfig),
+            reactReduxFirebase(firebase.initializeApp(fbConfig), rrfConfig),
             applyMiddleware(
                 ...middlewares,
                 UserMiddleware,

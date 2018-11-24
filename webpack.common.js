@@ -2,7 +2,7 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-
+var webpack = require("webpack");
 const ROOT_DIR = path.resolve(__dirname, '.');
 const BUILD_DIR = path.join(ROOT_DIR, 'static');
 module.exports = {
@@ -56,22 +56,26 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader'],
-                }),
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
             },
             {
-                test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                use: 'url-loader?limit=10000&name=fonts/compiled/[name].[ext]',
-            },
-            {
-                test: /\.svg$/,
-                loader: 'svg-inline-loader',
-            },
-            {
-                test: /\.(ttf|eot)(\?[\s\S]+)?$/,
-                use: 'file-loader?name=fonts/compiled/[name].[ext]',
+                test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+                use: "url-loader?limit=10000&mimetype=application/font-woff"
+            }, {
+                test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+                use: "url-loader?limit=10000&mimetype=application/font-woff"
+            }, {
+                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+                use: "url-loader?limit=10000&mimetype=application/octet-stream"
+            }, {
+                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+                use: "file-loader"
+            }, {
+                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+                use: "url-loader?limit=10000&mimetype=image/svg+xml"
             },
             {
                 test: /\.(jpe?g|png|gif)$/i,
@@ -87,6 +91,10 @@ module.exports = {
             watch: true,
         }),
         new ExtractTextPlugin('css/main.css'),
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery"
+        })
     ],
     resolve: {
         extensions: ['.js', '.jsx'],

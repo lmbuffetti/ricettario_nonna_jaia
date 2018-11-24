@@ -10,6 +10,7 @@ import connect from 'react-redux/es/connect/connect';
 import InputCustom from '../../components/InputCustom';
 import Select from '../../components/Select';
 import MultipleDoubleInput from '../../components/MultipleDoubleInput';
+import TextareaWysing from '../../components/TextareaWysing';
 import {
     booleanRequired,
     required,
@@ -77,6 +78,23 @@ function Receips(props) {
                     label="Ingredients"
                     labelBis="Quantity"
                 />
+
+                <Field
+                    name="description"
+                    fieldName="description"
+                    formName="saveReceips"
+                    component={TextareaWysing}
+                    extraClasses=""
+                    label="Nome ricetta"
+                    placeholder=""
+                    formValue={formValue}
+                    isShowErrors={isSubmit}
+                    value={get(formValue, 'values.description', '')}
+                    validate={[
+                        required,
+                    ]}
+                />
+
                 <button onClick={(e) => saveData(e)}>SAVE</button>
             </div>
         </form>
@@ -92,6 +110,7 @@ const mapStateToProps = (state, props) => {
             titolo: get(curEvent, 'titolo', null),
             difficolta: get(curEvent, 'difficolta', null),
             ingredients: get(curEvent, 'ingredients', null),
+            description: get(curEvent, 'description', null),
         },
         id: currentId,
         update: currentId !== null,
