@@ -19,6 +19,26 @@ import {
     requiredMaritalStatus,
     requiredAtLeastOne,
 } from '../../utils/validation.helper';
+import {
+    Badge,
+    Button,
+    ButtonDropdown,
+    ButtonGroup,
+    ButtonToolbar,
+    Card,
+    CardBody,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+    Col,
+    Dropdown,
+    DropdownItem,
+    DropdownMenu,
+    DropdownToggle,
+    Progress,
+    Row,
+    Table,
+} from 'reactstrap';
 
 function Receips(props) {
     const [isSubmit, setIsSubmit] = useState(false);
@@ -30,6 +50,7 @@ function Receips(props) {
         update,
         id,
         handleUpdateData,
+        titolo
     } = props;
 
     function saveData(e) {
@@ -46,59 +67,64 @@ function Receips(props) {
     }
     return (
         <form>
-            <div>
-                <Field
-                    name="titolo"
-                    component={InputCustom}
-                    extraClasses=""
-                    label="Nome ricetta"
-                    placeholder=""
-                    isShowErrors={isSubmit}
-                    validate={[
-                        required,
-                    ]}
-                />
-                <Field
-                    name="difficolta"
-                    component={Select}
-                    extraClasses="span-4 col-last"
-                    label="Difficoltà"
-                    placeholder="Select country"
-                    options={[
-                        {id: 0, name: 'Facile', code:'facile'},
-                        {id: 0, name: 'Medio', code:'medio'},
-                        {id: 0, name: 'Difficile', code:'difficile'}
-                    ]}
-                    validate={[
-                        required,
-                    ]}
-                />
-                <MultipleDoubleInput
-                    name="ingredients"
-                    fieldsName="ingredients"
-                    extraClasses=""
-                    label="Ingredients"
-                    labelBis="Quantity"
-                />
+            <Card>
+                <CardHeader className="mb-0">{titolo}</CardHeader>
+                <CardBody className="pb-0">
+                    <div>
+                        <Field
+                            name="titolo"
+                            component={InputCustom}
+                            extraClasses=""
+                            label="Nome ricetta"
+                            placeholder=""
+                            isShowErrors={isSubmit}
+                            validate={[
+                                required,
+                            ]}
+                        />
+                        <Field
+                            name="difficolta"
+                            component={Select}
+                            extraClasses=""
+                            label="Difficoltà"
+                            placeholder="Select country"
+                            options={[
+                                {id: 0, name: 'Facile', code:'facile'},
+                                {id: 0, name: 'Medio', code:'medio'},
+                                {id: 0, name: 'Difficile', code:'difficile'}
+                            ]}
+                            validate={[
+                                required,
+                            ]}
+                        />
+                        <MultipleDoubleInput
+                            name="ingredients"
+                            fieldsName="ingredients"
+                            extraClasses=""
+                            label="Ingredients"
+                            labelBis="Quantity"
+                        />
 
-                <Field
-                    name="description"
-                    fieldName="description"
-                    formName="saveReceips"
-                    component={TextareaWysing}
-                    extraClasses=""
-                    label="Nome ricetta"
-                    placeholder=""
-                    formValue={formValue}
-                    isShowErrors={isSubmit}
-                    val={get(formValue, 'values.description', '')}
-                    validate={[
-                        required,
-                    ]}
-                />
-                <DropzoneUpload />
-                <button className="btn small btn-primary mt-medium" onClick={(e) => saveData(e)}>SAVE</button>
-            </div>
+                        <Field
+                            name="description"
+                            fieldName="description"
+                            formName="saveReceips"
+                            component={TextareaWysing}
+                            extraClasses=""
+                            label="Nome ricetta"
+                            placeholder=""
+                            formValue={formValue}
+                            isShowErrors={isSubmit}
+                            val={get(formValue, 'values.description', '')}
+                            validate={[
+                                required,
+                            ]}
+                        />
+                        <DropzoneUpload />
+                        <button className="btn small btn-primary mt-medium" onClick={(e) => saveData(e)}>SAVE</button>
+                    </div>
+                </CardBody>
+            </Card>
         </form>
     )
 }
@@ -114,6 +140,7 @@ const mapStateToProps = (state, props) => {
             ingredients: get(curEvent, 'ingredients', null),
             description: get(curEvent, 'description', null),
         },
+        titolo: get(curEvent, 'titolo', 'Aggiungi Nuova Ricetta'),
         id: currentId,
         update: currentId !== null,
         user: get(state, 'user', {}),

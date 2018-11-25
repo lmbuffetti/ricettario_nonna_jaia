@@ -69,7 +69,7 @@ class Select extends Component {
         const placeholderClass = !input.value ? 'placeholder' : '';
 
         return (
-            <section className={`form-inline col ${extraClasses}`}>
+            <section className={`form-inline ${extraClasses}`}>
                 {!hideLabel
                 && (
                     <label className="input-label">

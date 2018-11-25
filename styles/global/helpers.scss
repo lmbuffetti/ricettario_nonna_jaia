@@ -308,7 +308,9 @@ body {
   .pr-xsmall {
     padding-right: $marg_xs;
   }
-
+  .pr-small {
+    padding-right: $marg_s;
+  }
   .mr-small {
     margin-right: $marg_s;
   }

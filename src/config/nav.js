@@ -22,7 +22,7 @@ export default {
             {
                 name: 'Aggiungi nuova',
                 url: '/admin/ricetta',
-                icon: 'icon-drop',
+                icon: 'icon-plus',
             },
         ],
     },

@@ -5,6 +5,26 @@ import { requestsReset } from '../../actions/CommonActions';
 import { loadEvents } from '../../actions/firebaseActions';
 import { withRouter, Link } from 'react-router-dom';
 import connect from 'react-redux/es/connect/connect';
+import {
+    Badge,
+    Button,
+    ButtonDropdown,
+    ButtonGroup,
+    ButtonToolbar,
+    Card,
+    CardBody,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+    Col,
+    Dropdown,
+    DropdownItem,
+    DropdownMenu,
+    DropdownToggle,
+    Progress,
+    Row,
+    Table,
+} from 'reactstrap';
 
 function Dashboard(props) {
     const {
@@ -17,17 +37,25 @@ function Dashboard(props) {
     });
     return (
         <Fragment>
-            <h1>Dashboard</h1>
-            {
-                receips.map(item => (
-                    <div key={item.id}>
-                        <Link to={`/admin/ricetta/${item.id}`}>
-                            {item.titolo}
-                        </Link>
-                    </div>
-                )
-                )
-            }
+            <Card>
+                <CardHeader className="mb-0">Dashboard</CardHeader>
+                <CardBody className="pb-0">
+                    <Row>
+                        <Col xs="12" md="12" xl="12">
+                            {
+                                receips.map(item => (
+                                        <div key={item.id}>
+                                            <Link to={`/admin/ricetta/${item.id}`}>
+                                                {item.titolo}
+                                            </Link>
+                                        </div>
+                                    )
+                                )
+                            }
+                        </Col>
+                    </Row>
+                </CardBody>
+            </Card>
         </Fragment>
     )
 }
