@@ -74,7 +74,7 @@
           <entry key="js" value="2085" />
           <entry key="json" value="56" />
           <entry key="jsx" value="5029" />
-          <entry key="md" value="438" />
+          <entry key="md" value="455" />
           <entry key="scss" value="587" />
           <entry key="txt" value="163" />
         </counts>
@@ -87,7 +87,7 @@
           <entry key="JSON" value="60" />
           <entry key="JSX Harmony" value="5029" />
           <entry key="JavaScript" value="2085" />
-          <entry key="Markdown" value="438" />
+          <entry key="Markdown" value="455" />
           <entry key="PLAIN_TEXT" value="163" />
           <entry key="SCSS" value="587" />
         </counts>
@@ -162,8 +162,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="210">
-                <caret line="14" column="65" selection-start-line="14" selection-start-column="65" selection-end-line="14" selection-end-column="65" />
+              <first_editor relative-caret-position="240">
+                <caret line="16" column="42" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
               </first_editor>
               <second_editor />
             </state>
@@ -556,7 +556,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543188353354" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543188419809" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -644,7 +644,7 @@
       <option name="presentableId" value="Default" />
       <updated>1542634537821</updated>
       <workItem from="1542634541867" duration="10551000" />
-      <workItem from="1542791858363" duration="69580000" />
+      <workItem from="1542791858363" duration="69643000" />
     </task>
     <task id="LOCAL-00001" summary="First Deploy">
       <created>1542638282603</created>
@@ -772,11 +772,18 @@
       <option name="project" value="LOCAL" />
       <updated>1543188269403</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Add Documentation">
+      <created>1543188356841</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1543188356841</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80131000" />
+    <option name="totallyTimeSpent" value="80194000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-15" y="23" width="1680" height="1027" extended-state="0" />
@@ -1228,8 +1235,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="210">
-            <caret line="14" column="65" selection-start-line="14" selection-start-column="65" selection-end-line="14" selection-end-column="65" />
+          <first_editor relative-caret-position="240">
+            <caret line="16" column="42" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
           </first_editor>
           <second_editor />
         </state>

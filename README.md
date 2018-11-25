@@ -12,9 +12,9 @@ This Project is realized using React 16.7 (with Hooks), Redux and Firebase as da
 
 ## Getting started
 
-- git clone `git@github.com:lmbuffetti/ricettario_nonna_jaia.git` - Clone the project
-- cd ricettario_nonna_jaia - Change directory to the project directory
-- npm install
+- `git clone git@github.com:lmbuffetti/ricettario_nonna_jaia.git` - Clone the project
+- `cd ricettario_nonna_jaia` - Change directory to the project directory
+- launch command `npm install` on terminal
 - create the file `firebaseConfig.js` on folder `src/config` and save the firebase configuration
 ```
 export const fbConfig = {
