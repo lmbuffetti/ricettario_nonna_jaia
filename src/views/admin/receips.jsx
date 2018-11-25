@@ -109,6 +109,7 @@ function Receips(props) {
                             name="description"
                             fieldName="description"
                             formName="saveReceips"
+                            folderName="imgRicette"
                             component={TextareaWysing}
                             extraClasses=""
                             label="Nome ricetta"
@@ -120,7 +121,11 @@ function Receips(props) {
                                 required,
                             ]}
                         />
-                        <DropzoneUpload />
+                        <DropzoneUpload
+                            fieldName="images"
+                            formName="saveReceips"
+                            val={get(formValue, 'values.images', [])}
+                        />
                         <button className="btn small btn-primary mt-medium" onClick={(e) => saveData(e)}>SAVE</button>
                     </div>
                 </CardBody>
@@ -139,6 +144,7 @@ const mapStateToProps = (state, props) => {
             difficolta: get(curEvent, 'difficolta', null),
             ingredients: get(curEvent, 'ingredients', null),
             description: get(curEvent, 'description', null),
+            images: get(curEvent, 'images', []),
         },
         titolo: get(curEvent, 'titolo', 'Aggiungi Nuova Ricetta'),
         id: currentId,

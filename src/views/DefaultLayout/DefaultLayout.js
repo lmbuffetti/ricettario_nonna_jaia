@@ -3,16 +3,16 @@ import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import { Container } from 'reactstrap';
 
 import {
-  AppAside,
-  AppBreadcrumb,
-  AppFooter,
-  AppHeader,
-  AppSidebar,
-  AppSidebarFooter,
-  AppSidebarForm,
-  AppSidebarHeader,
-  AppSidebarMinimizer,
-  AppSidebarNav,
+    AppAside,
+    AppBreadcrumb,
+    AppFooter,
+    AppHeader,
+    AppSidebar,
+    AppSidebarFooter,
+    AppSidebarForm,
+    AppSidebarHeader,
+    AppSidebarMinimizer,
+    AppSidebarNav,
 } from '@coreui/react';
 
 const DefaultAside = React.lazy(() => import('./DefaultAside'));
@@ -25,7 +25,7 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import { bindActionCreators } from 'redux';
 import { requestsReset } from '../../actions/CommonActions';
-import { loadEvents } from '../../actions/firebaseActions';
+import { loadEvents, loadStorage } from '../../actions/firebaseActions';
 import { reduxForm } from 'redux-form';
 
 class DefaultLayout extends Component {
@@ -34,67 +34,68 @@ class DefaultLayout extends Component {
         super(props);
 
         const {
-            handleLoadEvents
+            handleLoadEvents,
+            handleLoadStorage,
         } = this.props;
         const body = {};
         body.selectorDB = 'Ricette';
         handleLoadEvents(body);
+        handleLoadStorage('Ricette')
     }
 
-  loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
+    loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
-  signOut(e) {
-    e.preventDefault()
-    this.props.history.push('/login')
-  }
+    signOut(e) {
+        e.preventDefault()
+        this.props.history.push('/login')
+    }
 
-  render() {
-      const {
-          children,
-          classPage,
-          loggedUser,
-          loggedUserRole,
-          isLoading,
-          menuHeader,
-          firebaseLoaded,
-          location,
-          userName,
-      } = this.props;
-      console.log(navigation['admin'], this.props);
-    return (
-      <div className="app">
-        <AppHeader fixed>
-          <Suspense  fallback={this.loading()}>
-            <DefaultHeader userName={userName} onLogout={e=>this.signOut(e)}/>
-          </Suspense>
-        </AppHeader>
-        <div className="app-body">
-          <AppSidebar fixed display="lg">
-            <AppSidebarHeader />
-            <AppSidebarForm />
-            <Suspense>
-            <AppSidebarNav location={location} navConfig={navigation['admin']} />
-            </Suspense>
-            <AppSidebarFooter />
-            <AppSidebarMinimizer />
-          </AppSidebar>
-          <main className="main">
-            <AppBreadcrumb/>
-            <Container fluid>
-              <Suspense fallback={this.loading()}>
-                  {React.cloneElement(children)}
-              </Suspense>
-            </Container>
-          </main>
-        </div>
-        <AppFooter>
-          <Suspense fallback={this.loading()}>
-            <DefaultFooter />
-          </Suspense>
-        </AppFooter>
-      </div>
-    );
-  }
+    render() {
+        const {
+            children,
+            classPage,
+            loggedUser,
+            loggedUserRole,
+            isLoading,
+            menuHeader,
+            firebaseLoaded,
+            location,
+            userName,
+        } = this.props;
+        return (
+            <div className="app">
+                <AppHeader fixed>
+                    <Suspense  fallback={this.loading()}>
+                        <DefaultHeader userName={userName} onLogout={e=>this.signOut(e)}/>
+                    </Suspense>
+                </AppHeader>
+                <div className="app-body">
+                    <AppSidebar fixed display="lg">
+                        <AppSidebarHeader />
+                        <AppSidebarForm />
+                        <Suspense>
+                            <AppSidebarNav location={location} navConfig={navigation['admin']} />
+                        </Suspense>
+                        <AppSidebarFooter />
+                        <AppSidebarMinimizer />
+                    </AppSidebar>
+                    <main className="main">
+                        <AppBreadcrumb/>
+                        <Container fluid>
+                            <Suspense fallback={this.loading()}>
+                                {React.cloneElement(children)}
+                            </Suspense>
+                        </Container>
+                    </main>
+                </div>
+                <AppFooter>
+                    <Suspense fallback={this.loading()}>
+                        <DefaultFooter />
+                    </Suspense>
+                </AppFooter>
+            </div>
+        );
+    }
 }
 
 DefaultLayout.propTypes = {
@@ -114,6 +115,7 @@ DefaultLayout.propTypes = {
     isLoading: PropTypes.number.isRequired,
     firebaseLoaded: PropTypes.bool.isRequired,
     userName: PropTypes.string,
+    handleLoadStorage: PropTypes.func.isRequired,
 };
 DefaultLayout.defaultProps = {
     // isLoading: true,
@@ -145,6 +147,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     handleRequestsReset: bindActionCreators(requestsReset, dispatch),
     handleLoadEvents: bindActionCreators(loadEvents, dispatch),
+    handleLoadStorage: bindActionCreators(loadStorage, dispatch),
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DefaultLayout));

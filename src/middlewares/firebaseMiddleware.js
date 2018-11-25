@@ -5,25 +5,30 @@ import {
     ERROR_EVENTS,
     SET_EVENTS,
     UPDATE_EVENTS,
+    LOAD_STORAGE,
+    SET_IMAGES
 } from '../actions/types/firebaseTypes';
 import firebase from 'firebase';
+import { getFirebase, reactReduxFirebase } from 'react-redux-firebase'
+
 
 const fetchPlan = store => next => (action) => {
     switch (action.type) {
-        case LOAD_EVENTS:
+        case LOAD_EVENTS: {
             const { selectorDB } = action.payload;
             delete action.payload.selectorDB;
             const db = firebase.database().ref(selectorDB);
-            db.once('value').then(function(snapshot) {
+            db.once('value').then(function (snapshot) {
                 const listEvent = snapshot.val();
                 const event = [];
                 Object.keys(listEvent).map((item, i) => {
                     event.push(listEvent[item]);
                     event[i].id = item;
                 });
-                store.dispatch({type: SET_EVENTS, payload: event})
+                store.dispatch({ type: SET_EVENTS, payload: event })
             });
             break;
+        }
         case SAVE_EVENTS: {
             console.log(action.payload);
             const { selectorDB } = action.payload;
@@ -43,6 +48,15 @@ const fetchPlan = store => next => (action) => {
                 action.payload
             );
             store.dispatch({ type: LOAD_EVENTS });
+            break;
+        }
+        case LOAD_STORAGE: {
+            console.log('test');
+            const { selectorDB } = action.payload;
+            delete action.payload.selectorDB;
+            const db = firebase.storage().ref();
+            console.log('test',getFirebase);
+
             break;
         }
         default:
