@@ -45,7 +45,7 @@ function Receips(props) {
         }
     }
     return (
-        <form className="know-you-form">
+        <form>
             <div>
                 <Field
                     name="titolo"

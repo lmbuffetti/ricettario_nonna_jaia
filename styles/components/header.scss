@@ -1,5 +1,14 @@
 #mainHeader {
+  > div {
+    padding: 10px;
+  }
   img {
-    max-width: 200px;
+    max-width: 150px;
+  }
+}
+.app-header {
+  background: #2f353a;
+  a.navbar-brand > img {
+    height: auto;
   }
 }

@@ -24,7 +24,7 @@ const handlers = {
 };
 
 const enhancerPropsTypes = {
-    firebaseOption: PropTypes.object.isRequired
+    firebaseOption: PropTypes.object
 };
 
 // Component Enhancer that adds props.firebase and creates a listener for
@@ -62,7 +62,7 @@ const Uploader = ({ uploadedFiles, onFileDelete, onFilesDrop }) => (
 );
 
 Uploader.propTypes = {
-    firebaseOption: PropTypes.object.isRequired,
+    firebaseOption: PropTypes.object,
     uploadedFiles: PropTypes.object
 };
 

@@ -1,6 +1,7 @@
 // Require Editor CSS files.
 @import '~froala-editor/css/froala_style.min.css';
 @import '~froala-editor/css/froala_editor.pkgd.min.css';
+@import "~@coreui/coreui/scss/coreui.scss";
 
 // Require Font Awesome.
 @import '~font-awesome/css/font-awesome.css';
@@ -8,10 +9,13 @@
 @import "global/vars",
 "global/grid",
 "global/helpers",
-"global/utils";
+"global/utils",
+"global/general";
 //COMPONENTS
 @import "components/header",
+"components/page-transition",
 "components/spinner.scss";
 //MODULES
 @import "modules/inputs",
+"modules/sidebar",
 "modules/buttons";

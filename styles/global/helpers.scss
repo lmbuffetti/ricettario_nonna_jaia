@@ -156,7 +156,16 @@
   overflow-x: auto;
 }
 .b-r {
-  border-right: 1px solid $grey400;
+  border-right: 1px solid $borderGray;
+}
+.b-t {
+  border-top: 1px solid $borderGray;
+}
+.b-b {
+  border-bottom: 1px solid $borderGray;
+}
+.b-l {
+  border-left: 1px solid $borderGray;
 }
 .td-n {
   text-decoration: none;

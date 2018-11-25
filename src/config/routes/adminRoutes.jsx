@@ -1,4 +1,4 @@
-import AdminLayout from '../../views/layouts/AdminLayout';
+import AdminLayout from '../../views/DefaultLayout/DefaultLayout';
 import Dashboard from '../../views/admin/dashboard';
 import Receips from '../../views/admin/receips';
 
@@ -13,7 +13,7 @@ export default [
         path: '/admin/',
         component: Dashboard,
         classPage: classHome,
-        menu: 'website',
+        menu: 'admin',
         menuFooter: menuAdviser,
         menuName: '',
         menuPosition: 'scroll_header',
@@ -26,7 +26,7 @@ export default [
         path: '/admin/ricetta',
         component: Receips,
         classPage: classHome,
-        menu: 'website',
+        menu: 'admin',
         menuFooter: menuAdviser,
         menuName: '',
         menuPosition: 'scroll_header',
@@ -39,7 +39,7 @@ export default [
         path: '/admin/ricetta/:id',
         component: Receips,
         classPage: classHome,
-        menu: 'website',
+        menu: 'admin',
         menuFooter: menuAdviser,
         menuName: '',
         menuPosition: 'scroll_header',

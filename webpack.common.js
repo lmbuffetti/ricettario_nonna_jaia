@@ -51,15 +51,19 @@ module.exports = {
                 loader: 'babel-loader',
                 query: {
                     presets: ['@babel/react', '@babel/env'],
-                    plugins: ['@babel/plugin-proposal-class-properties']
+                    plugins: ['@babel/plugin-proposal-class-properties', '@babel/plugin-syntax-dynamic-import']
                 },
             },
             {
                 test: /\.css$/,
                 use: [
-                    'style-loader',
-                    'css-loader'
-                ]
+                    {
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
+                    },
+                ],
             },
             {
                 test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
@@ -97,6 +101,7 @@ module.exports = {
         })
     ],
     resolve: {
-        extensions: ['.js', '.jsx'],
+        extensions: ['.js', '.jsx', '.css'],
+        modules: ['node_modules'],
     },
 };

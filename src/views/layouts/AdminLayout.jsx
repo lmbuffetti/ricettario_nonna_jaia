@@ -11,6 +11,11 @@ import { loadEvents } from '../../actions/firebaseActions';
 import Spinner from '../../components/Spinner'
 import AdminSidebar from '../../components/AdminSidebar';
 
+import {
+    CSSTransition,
+    TransitionGroup,
+} from 'react-transition-group';
+
 class AdminLayout extends Component {
     constructor(props) {
         super(props);
@@ -47,17 +52,25 @@ class AdminLayout extends Component {
             loggedUser,
             loggedUserRole,
             isLoading,
+            menuHeader,
             firebaseLoaded,
         } = this.props;
         return (
-            <div className={`${classPage}`} id="ricettario">
-                <Header user={loggedUser} role={loggedUserRole} />
-                <div className="row">
-                    <AdminSidebar extraClass="col-4" />
-                    <div className="col-8">
-                        {React.cloneElement(children)}
+            <div className={`${classPage} darkVersion`} id="ricettario">
+                <Header extraClass="fullWidth b-b" user={loggedUser} role={loggedUserRole} dark={true} />
+                    <div className="row">
+                        <AdminSidebar menu={menuHeader} extraClass="col-2" />
+                        <div className="col-10 pl-small">
+                            <TransitionGroup className="todo-list">
+                                <CSSTransition
+                                    timeout={5000}
+                                    classNames="fade"
+                                >
+                                    {React.cloneElement(children)}
+                                </CSSTransition>
+                            </TransitionGroup>
+                        </div>
                     </div>
-                </div>
                 <Spinner isLoading={isLoading > 0 || !firebaseLoaded} />
             </div>
         );
