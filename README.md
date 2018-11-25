@@ -26,4 +26,4 @@ export const fbConfig = {
     messagingSenderId: "XXXX"
 };
 ```
-- launch command `npm start start-server`
+- launch command `npm run start-server`
