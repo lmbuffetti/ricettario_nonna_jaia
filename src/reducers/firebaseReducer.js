@@ -6,11 +6,11 @@ import {
 } from '../actions/types/firebaseTypes';
 
 export const defaultState = {
-    events: [],
+    receips: [],
 };
 
 export default handleActions({
     [LOAD_EVENTS]: state => state,
     [SAVE_EVENTS]: state => state,
-    [SET_EVENTS]: (state, action) => Object.assign({}, state, {events: action.payload}),
+    [SET_EVENTS]: (state, action) => Object.assign({}, state, {receips: action.payload}),
 }, defaultState);

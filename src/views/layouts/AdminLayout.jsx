@@ -9,6 +9,7 @@ import { requestsReset } from '../../actions/CommonActions';
 import Header from '../../components/Header';
 import { loadEvents } from '../../actions/firebaseActions';
 import Spinner from '../../components/Spinner'
+import AdminSidebar from '../../components/AdminSidebar';
 
 class AdminLayout extends Component {
     constructor(props) {
@@ -20,8 +21,9 @@ class AdminLayout extends Component {
             history,
             handleLoadEvents,
         } = this.props;
-
-        handleLoadEvents();
+        const body = {};
+        body.selectorDB = 'Ricette';
+        handleLoadEvents(body);
     }
     componentWillMount() {
         const { titleHeader } = this.props;
@@ -33,7 +35,6 @@ class AdminLayout extends Component {
             loadedFirebase,
             history,
         } = this.props;
-        console.log(loadedFirebase, loggedUserRole);
         if (loadedFirebase && loggedUserRole !== 'admin' && loggedUserRole !== null) {
             console.log(loggedUserRole);
             history.push('/');
@@ -48,11 +49,15 @@ class AdminLayout extends Component {
             isLoading,
             firebaseLoaded,
         } = this.props;
-        console.log(isLoading > 0 || !firebaseLoaded);
         return (
-            <div className={classPage} id="ricettario">
+            <div className={`${classPage}`} id="ricettario">
                 <Header user={loggedUser} role={loggedUserRole} />
-                {React.cloneElement(children)}
+                <div className="row">
+                    <AdminSidebar extraClass="col-4" />
+                    <div className="col-8">
+                        {React.cloneElement(children)}
+                    </div>
+                </div>
                 <Spinner isLoading={isLoading > 0 || !firebaseLoaded} />
             </div>
         );

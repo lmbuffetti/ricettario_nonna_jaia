@@ -7,19 +7,25 @@ import { change, Field } from 'redux-form';
 import 'froala-editor/js/froala_editor.pkgd.min.js';
 
 import FroalaEditor from 'react-froala-wysiwyg';
+import get from 'lodash/get';
 
 function TextareaWysing(props) {
     const {
-        value,
+        val,
         formName,
         changeFieldValue,
         fieldName,
     } = props;
-    const [model, setModel] = useState(value);
+    const [model, setModel] = useState(val);
     function handleModelChange(e) {
-        setModel(e)
+        setModel(e);
         changeFieldValue(formName, fieldName, e);
     }
+    useEffect(() => {
+        if (val !== model) {
+            setModel(val)
+        }
+    });
     return (
         <FroalaEditor
             tag='textarea'
@@ -50,7 +56,7 @@ TextareaWysing.defaultProps = {
     value: '',
 };
 
-const mapStateToProps = (state) => {};
+const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = dispatch => ({
     changeFieldValue: (formName, field, value) => {

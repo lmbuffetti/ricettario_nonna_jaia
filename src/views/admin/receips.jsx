@@ -11,6 +11,7 @@ import InputCustom from '../../components/InputCustom';
 import Select from '../../components/Select';
 import MultipleDoubleInput from '../../components/MultipleDoubleInput';
 import TextareaWysing from '../../components/TextareaWysing';
+import DropzoneUpload from '../../components/DropzoneUpload';
 import {
     booleanRequired,
     required,
@@ -34,12 +35,13 @@ function Receips(props) {
     function saveData(e) {
         e.preventDefault();
         console.log('test', loggedUserRole, formValue.values, update);
+        const body = formValue.values;
+        body.selectorDB = 'Ricette';
         if (update) {
-            const body = formValue.values;
             body.selector = id;
             handleUpdateData(body);
         } else {
-            handleSaveData(formValue.values);
+            handleSaveData(body);
         }
     }
     return (
@@ -74,7 +76,7 @@ function Receips(props) {
                 <MultipleDoubleInput
                     name="ingredients"
                     fieldsName="ingredients"
-                    extraClasses="mt-2rem"
+                    extraClasses=""
                     label="Ingredients"
                     labelBis="Quantity"
                 />
@@ -89,13 +91,13 @@ function Receips(props) {
                     placeholder=""
                     formValue={formValue}
                     isShowErrors={isSubmit}
-                    value={get(formValue, 'values.description', '')}
+                    val={get(formValue, 'values.description', '')}
                     validate={[
                         required,
                     ]}
                 />
-
-                <button onClick={(e) => saveData(e)}>SAVE</button>
+                <DropzoneUpload />
+                <button className="btn small btn-primary mt-medium" onClick={(e) => saveData(e)}>SAVE</button>
             </div>
         </form>
     )
@@ -103,7 +105,7 @@ function Receips(props) {
 
 const mapStateToProps = (state, props) => {
     const currentId = get(props, 'match.params.id', null);
-    const allEvents = get(state, 'firebase.events', []);
+    const allEvents = get(state, 'firebase.receips', []);
     const curEvent = allEvents.find(item => item.id === currentId);
     return ({
         initialValues: {

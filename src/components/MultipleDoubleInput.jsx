@@ -39,19 +39,18 @@ class MultipleDoubleInput extends Component {
         return (
             <div className={extraClasses}>
                 {fields.map((multiple_contribution, index) => (
-                    <section className="dis-f blockMultiText" key={index.toString()}>
+                    <section className={`dis-f blockMultiText ${index > 0 ? 'mt-small' : ''}`} key={index.toString()}>
                         <Field
                             name={`${multiple_contribution}.stock`}
                             type="text"
                             component={InputCustom}
-                            extraClasses="col span-4"
                             label={label}
                         />
                         <Field
                             name={`${multiple_contribution}.quantity`}
                             type="text"
                             component={InputCustom}
-                            extraClasses="col span-4"
+                            extraClasses="pl-small"
                             label={labelBis}
                         />
                         <button
@@ -70,7 +69,7 @@ class MultipleDoubleInput extends Component {
                         {error}
                     </li>
                 )}
-                <div className={`${extraClassesButton} mb-2rem`}>
+                <div className={`${extraClassesButton} mb-small`}>
                     <button className="primary_button" type="button" onClick={MultipleDoubleInput.actionArray.bind(this, fields, 'add', 0)}>
                         + Add Ingredients
                     </button>

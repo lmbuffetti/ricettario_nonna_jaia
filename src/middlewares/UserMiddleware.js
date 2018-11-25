@@ -24,7 +24,6 @@ import {
     SET_SCORE_RISK_PROFILE,
     ADD_RISK_PROFILE,
 } from '../actions/types/UserTypes';
-import api from '../api/config';
 import {
     REQUEST_RECEIVED_DONE,
     SPINNER_OFF,

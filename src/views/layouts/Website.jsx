@@ -18,7 +18,9 @@ class Website extends Component {
             handleLoadEvents
         } = this.props;
 
-        handleLoadEvents();
+        const body = {};
+        body.selectorBD = 'Ricette';
+        handleLoadEvents(body);
         handleRequestsReset();
     }
     componentWillMount() {

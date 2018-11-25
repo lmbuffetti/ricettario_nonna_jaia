@@ -11,7 +11,9 @@ import firebase from 'firebase';
 const fetchPlan = store => next => (action) => {
     switch (action.type) {
         case LOAD_EVENTS:
-            const db = firebase.database().ref('Event');
+            const { selectorDB } = action.payload;
+            delete action.payload.selectorDB;
+            const db = firebase.database().ref(selectorDB);
             db.once('value').then(function(snapshot) {
                 const listEvent = snapshot.val();
                 const event = [];
@@ -22,22 +24,27 @@ const fetchPlan = store => next => (action) => {
                 store.dispatch({type: SET_EVENTS, payload: event})
             });
             break;
-        case SAVE_EVENTS:
+        case SAVE_EVENTS: {
             console.log(action.payload);
-            firebase.database().ref('Event/').push(
+            const { selectorDB } = action.payload;
+            delete action.payload.selectorDB;
+            firebase.database().ref(`${selectorDB}/`).push(
                 action.payload
             );
-            store.dispatch({type: LOAD_EVENTS});
+            store.dispatch({ type: LOAD_EVENTS });
             break;
-        case UPDATE_EVENTS:
+        }
+        case UPDATE_EVENTS: {
             console.log(action.payload);
-            const { selector } = action.payload;
+            const { selector, selectorDB } = action.payload;
             delete action.payload.selector;
-            firebase.database().ref(`Event/${selector}`).set(
+            delete action.payload.selectorDB;
+            firebase.database().ref(`${selectorDB}/${selector}`).set(
                 action.payload
             );
-            store.dispatch({type: LOAD_EVENTS});
+            store.dispatch({ type: LOAD_EVENTS });
             break;
+        }
         default:
             next(action);
     }

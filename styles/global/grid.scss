@@ -1,0 +1,10 @@
+$class-slug: col !default
+.row {
+  display: flex;
+}
+@for $i from 1 through 4 {
+  .#{$class-slug}-#{$i} {
+    width: percentage($i / 12);
+    flex: 0 0 percentage($i / 12);
+  }
+}

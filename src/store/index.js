@@ -28,10 +28,18 @@ const rrfConfig = {
         email: user.email || user.providerData[0].email,
         role: 'user',
         providerData: user.providerData
-    })
+    }),
+    fileMetadataFactory: (uploadRes, firebase, metadata, downloadURL) => {
+        // upload response from Firebase's storage upload
+        const { metadata: { name, fullPath } } = uploadRes;
+        // default factory includes name, fullPath, downloadURL
+        return {
+            name,
+            fullPath,
+            downloadURL
+        }
+    }
 };
-
-
 
 function configureStore(data) {
     // eslint-disable-next-line no-unused-expressions, no-underscore-dangle
