@@ -20,10 +20,11 @@ const fetchPlan = store => next => (action) => {
             const db = firebase.database().ref(selectorDB);
             db.once('value').then(function (snapshot) {
                 const listEvent = snapshot.val();
-                const event = [];
+                const event = store.getState().firebase.receips;
+                event[selectorDB] = [];
                 Object.keys(listEvent).map((item, i) => {
-                    event.push(listEvent[item]);
-                    event[i].id = item;
+                    event[selectorDB].push(listEvent[item]);
+                    event[selectorDB][i].id = item;
                 });
                 store.dispatch({ type: SET_EVENTS, payload: event })
             });
@@ -36,7 +37,7 @@ const fetchPlan = store => next => (action) => {
             firebase.database().ref(`${selectorDB}/`).push(
                 action.payload
             );
-            store.dispatch({ type: LOAD_EVENTS });
+            store.dispatch({ type: LOAD_EVENTS, payload: {selectorDB} });
             break;
         }
         case UPDATE_EVENTS: {

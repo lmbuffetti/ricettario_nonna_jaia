@@ -40,6 +40,9 @@ class DefaultLayout extends Component {
         const body = {};
         body.selectorDB = 'Ricette';
         handleLoadEvents(body);
+        const bodyBis = {};
+        bodyBis.selectorDB = 'Blog';
+        handleLoadEvents(bodyBis);
         handleLoadStorage('Ricette')
     }
 

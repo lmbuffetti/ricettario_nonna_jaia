@@ -40,7 +40,7 @@ import {
     Table,
 } from 'reactstrap';
 
-function Receips(props) {
+function Blog(props) {
     const [isSubmit, setIsSubmit] = useState(false);
     const {
         loggedUserRole,
@@ -56,7 +56,7 @@ function Receips(props) {
     function saveData(e) {
         e.preventDefault();
         const body = formValue.values;
-        body.selectorDB = 'Ricette';
+        body.selectorDB = 'Blog';
         if (update) {
             body.selector = id;
             handleUpdateData(body);
@@ -74,7 +74,7 @@ function Receips(props) {
                             name="titolo"
                             component={InputCustom}
                             extraClasses=""
-                            label="Nome ricetta"
+                            label="Titolo Articolo"
                             placeholder=""
                             isShowErrors={isSubmit}
                             validate={[
@@ -82,36 +82,12 @@ function Receips(props) {
                             ]}
                         />
                         <Field
-                            name="difficolta"
-                            component={Select}
-                            extraClasses=""
-                            label="Difficoltà"
-                            placeholder="Select country"
-                            options={[
-                                {id: 0, name: 'Facile', code:'facile'},
-                                {id: 0, name: 'Medio', code:'medio'},
-                                {id: 0, name: 'Difficile', code:'difficile'}
-                            ]}
-                            validate={[
-                                required,
-                            ]}
-                        />
-                        <MultipleDoubleInput
-                            name="ingredients"
-                            fieldsName="ingredients"
-                            extraClasses=""
-                            label="Ingredients"
-                            labelBis="Quantity"
-                        />
-
-                        <Field
                             name="description"
                             fieldName="description"
-                            formName="saveReceips"
-                            folderName="imgRicette"
+                            formName="saveBlog"
+                            folderName="imgBlog"
                             component={TextareaWysing}
                             extraClasses=""
-                            label="Nome ricetta"
                             placeholder=""
                             formValue={formValue}
                             isShowErrors={isSubmit}
@@ -122,7 +98,7 @@ function Receips(props) {
                         />
                         <DropzoneUpload
                             fieldName="images"
-                            formName="saveReceips"
+                            formName="saveBlog"
                             val={get(formValue, 'values.images', [])}
                         />
                         <button className="btn small btn-primary mt-medium" onClick={(e) => saveData(e)}>SAVE</button>
@@ -135,13 +111,11 @@ function Receips(props) {
 
 const mapStateToProps = (state, props) => {
     const currentId = get(props, 'match.params.id', null);
-    const allEvents = get(state, 'firebase.receips["Ricette"]', []);
+    const allEvents = get(state, 'firebase.receips["Blog"]', []);
     const curEvent = allEvents.find(item => item.id === currentId);
     return ({
         initialValues: {
             titolo: get(curEvent, 'titolo', null),
-            difficolta: get(curEvent, 'difficolta', null),
-            ingredients: get(curEvent, 'ingredients', null),
             description: get(curEvent, 'description', null),
             images: get(curEvent, 'images', []),
         },
@@ -154,7 +128,7 @@ const mapStateToProps = (state, props) => {
         loggedUser: get(state, 'firebaseOption.profile.providerData[0]', null),
         loggedUserRole: get(state, 'firebaseOption.profile.role', null),
         loadedFirebase: get(state, 'firebaseOption.auth.isLoaded', null),
-        formValue: get(state, 'form.saveReceips', null),
+        formValue: get(state, 'form.saveBlog', null),
     });
 }
 
@@ -164,8 +138,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const initializeForm = reduxForm({
-    form: 'saveReceips',
+    form: 'saveBlog',
     enableReinitialize: true,
-})(Receips);
+})(Blog);
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(initializeForm));

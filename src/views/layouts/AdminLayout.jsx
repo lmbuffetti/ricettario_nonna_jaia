@@ -29,6 +29,9 @@ class AdminLayout extends Component {
         const body = {};
         body.selectorDB = 'Ricette';
         handleLoadEvents(body);
+        const bodyBis = {};
+        bodyBis.selectorDB = 'Blog';
+        handleLoadEvents(bodyBis);
     }
     componentWillMount() {
         const { titleHeader } = this.props;
