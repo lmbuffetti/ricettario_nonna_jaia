@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a6c3188-c10c-4129-abb9-24b89d4e92e3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/views/admin/blog.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/admin/editBlog.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/admin/ricette.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/_nav.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/nav.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/nav.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/routes/adminRoutes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/routes/adminRoutes.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middlewares/firebaseMiddleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/middlewares/firebaseMiddleware.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/DefaultLayout/DefaultLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DefaultLayout/DefaultLayout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/admin/receips.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/admin/receips.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/layouts/AdminLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layouts/AdminLayout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <list id="20cc0c80-a123-4d6d-9869-21974e18d7df" name="No push" comment="">
       <change afterPath="$PROJECT_DIR$/src/config/firebaseConfig.js" afterDir="false" />
@@ -48,7 +39,7 @@
           <entry key="js" value="130" />
           <entry key="json" value="9" />
           <entry key="jsx" value="87" />
-          <entry key="md" value="1" />
+          <entry key="md" value="2" />
           <entry key="scss" value="33" />
           <entry key="svg" value="3" />
         </counts>
@@ -63,7 +54,7 @@
           <entry key="JSX Harmony" value="87" />
           <entry key="Jade" value="1" />
           <entry key="JavaScript" value="133" />
-          <entry key="Markdown" value="1" />
+          <entry key="Markdown" value="2" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SCSS" value="33" />
           <entry key="SVG" value="3" />
@@ -83,9 +74,9 @@
           <entry key="js" value="2085" />
           <entry key="json" value="56" />
           <entry key="jsx" value="5029" />
-          <entry key="md" value="1" />
+          <entry key="md" value="9" />
           <entry key="scss" value="587" />
-          <entry key="txt" value="130" />
+          <entry key="txt" value="143" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -96,8 +87,8 @@
           <entry key="JSON" value="60" />
           <entry key="JSX Harmony" value="5029" />
           <entry key="JavaScript" value="2085" />
-          <entry key="Markdown" value="1" />
-          <entry key="PLAIN_TEXT" value="130" />
+          <entry key="Markdown" value="9" />
+          <entry key="PLAIN_TEXT" value="143" />
           <entry key="SCSS" value="587" />
         </counts>
       </usages-collector>
@@ -156,15 +147,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/config/nav.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/config/routes/adminRoutes.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="193">
@@ -185,14 +167,26 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/DefaultLayout/DefaultLayout.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="40" selection-start-line="40" selection-end-line="40" />
+            <state relative-caret-position="373">
+              <caret line="151" column="56" lean-forward="true" selection-start-line="151" selection-start-column="56" selection-end-line="151" selection-end-column="56" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor>
+                <caret column="8" lean-forward="true" selection-start-column="8" selection-end-column="8" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -268,7 +262,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/views/pages/Login.jsx" />
         <option value="$PROJECT_DIR$/src/config/routes/websiteRoutes.jsx" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/views/pages/homepage.jsx" />
         <option value="$PROJECT_DIR$/src/config/appRoutes.jsx" />
         <option value="$PROJECT_DIR$/src/middlewares/WebappMiddleware.js" />
@@ -317,6 +310,7 @@
         <option value="$PROJECT_DIR$/src/views/admin/ricette.jsx" />
         <option value="$PROJECT_DIR$/src/views/layouts/AdminLayout.jsx" />
         <option value="$PROJECT_DIR$/src/views/DefaultLayout/DefaultLayout.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -565,7 +559,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543186508026" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543187150519" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -653,7 +647,7 @@
       <option name="presentableId" value="Default" />
       <updated>1542634537821</updated>
       <workItem from="1542634541867" duration="10551000" />
-      <workItem from="1542791858363" duration="68093000" />
+      <workItem from="1542791858363" duration="68265000" />
     </task>
     <task id="LOCAL-00001" summary="First Deploy">
       <created>1542638282603</created>
@@ -746,17 +740,24 @@
       <option name="project" value="LOCAL" />
       <updated>1543180010564</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Add Blog Page">
+      <created>1543186541453</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1543186541453</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78644000" />
+    <option name="totallyTimeSpent" value="78816000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-15" y="23" width="1680" height="1027" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25274727" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25274727" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -772,7 +773,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50061053" side_tool="true" weight="0.32894737" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4993895" visible="true" weight="0.32894737" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4993895" visible="true" weight="0.32894737" />
       <window_info anchor="bottom" id="RNConsole" order="9" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" sideWeight="0.4993895" weight="0.32894737" />
@@ -802,12 +803,10 @@
     <MESSAGE value="Add Form Redux" />
     <MESSAGE value="Add dropzone image upload" />
     <MESSAGE value="Add design admin panel" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add design admin panel" />
+    <MESSAGE value="Add Blog Page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Blog Page" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/img/down-arrow.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Spinner.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1192,11 +1191,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/DefaultLayout/DefaultLayout.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
+        <state relative-caret-position="373">
+          <caret line="151" column="56" lean-forward="true" selection-start-line="151" selection-start-column="56" selection-end-line="151" selection-end-column="56" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor>
+            <caret column="8" lean-forward="true" selection-start-column="8" selection-end-column="8" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
