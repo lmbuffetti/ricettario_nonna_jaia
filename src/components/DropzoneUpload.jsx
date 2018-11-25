@@ -44,7 +44,7 @@ const enhance = compose(
 
 const Uploader = ({ uploadedFiles, onFileDelete, onFilesDrop }) => (
     <div>
-        <Dropzone onDrop={onFilesDrop}>
+        <Dropzone onDrop={onFilesDrop} className="wrap-dropzone mt-medium">
             <div>Drag and drop files here or click to select</div>
         </Dropzone>
         {uploadedFiles && (

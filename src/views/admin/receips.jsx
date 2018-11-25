@@ -69,7 +69,7 @@ function Receips(props) {
         <form>
             <Card>
                 <CardHeader className="mb-0">{titolo}</CardHeader>
-                <CardBody className="pb-0">
+                <CardBody className="pb-medium">
                     <div>
                         <Field
                             name="titolo"
