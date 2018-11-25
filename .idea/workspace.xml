@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0a6c3188-c10c-4129-abb9-24b89d4e92e3" name="Default Changelist" comment="Add Blog Page">
+    <list default="true" id="0a6c3188-c10c-4129-abb9-24b89d4e92e3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
@@ -74,9 +74,9 @@
           <entry key="js" value="2085" />
           <entry key="json" value="56" />
           <entry key="jsx" value="5029" />
-          <entry key="md" value="269" />
+          <entry key="md" value="272" />
           <entry key="scss" value="587" />
-          <entry key="txt" value="143" />
+          <entry key="txt" value="163" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -87,8 +87,8 @@
           <entry key="JSON" value="60" />
           <entry key="JSX Harmony" value="5029" />
           <entry key="JavaScript" value="2085" />
-          <entry key="Markdown" value="269" />
-          <entry key="PLAIN_TEXT" value="143" />
+          <entry key="Markdown" value="272" />
+          <entry key="PLAIN_TEXT" value="163" />
           <entry key="SCSS" value="587" />
         </counts>
       </usages-collector>
@@ -183,8 +183,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="135">
-                <caret line="9" column="72" selection-start-line="9" selection-start-column="72" selection-end-line="9" selection-end-column="72" />
+              <first_editor relative-caret-position="150">
+                <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
               </first_editor>
               <second_editor />
             </state>
@@ -559,7 +559,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543187631255" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543187723489" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -647,7 +647,7 @@
       <option name="presentableId" value="Default" />
       <updated>1542634537821</updated>
       <workItem from="1542634541867" duration="10551000" />
-      <workItem from="1542791858363" duration="68888000" />
+      <workItem from="1542791858363" duration="68980000" />
     </task>
     <task id="LOCAL-00001" summary="First Deploy">
       <created>1542638282603</created>
@@ -754,11 +754,18 @@
       <option name="project" value="LOCAL" />
       <updated>1543187202543</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Add Documentation">
+      <created>1543187648541</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1543187648541</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79439000" />
+    <option name="totallyTimeSpent" value="79531000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-15" y="23" width="1680" height="1027" extended-state="0" />
@@ -811,7 +818,8 @@
     <MESSAGE value="Add dropzone image upload" />
     <MESSAGE value="Add design admin panel" />
     <MESSAGE value="Add Blog Page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Blog Page" />
+    <MESSAGE value="Add Documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Documentation" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/components/Spinner.jsx">
@@ -1209,8 +1217,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="135">
-            <caret line="9" column="72" selection-start-line="9" selection-start-column="72" selection-end-line="9" selection-end-column="72" />
+          <first_editor relative-caret-position="150">
+            <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
           </first_editor>
           <second_editor />
         </state>
