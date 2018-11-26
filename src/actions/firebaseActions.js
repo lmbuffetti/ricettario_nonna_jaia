@@ -6,7 +6,7 @@ import {
     SET_EVENTS,
     SET_IMAGES,
     UPDATE_EVENTS,
-    LOAD_STORAGE
+    LOAD_STORAGE,
 } from './types/firebaseTypes';
 
 export const {

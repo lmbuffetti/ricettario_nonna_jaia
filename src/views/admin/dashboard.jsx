@@ -1,41 +1,18 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import get from 'lodash/get';
 import { bindActionCreators } from 'redux';
-import { requestsReset } from '../../actions/CommonActions';
-import { loadEvents } from '../../actions/firebaseActions';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import connect from 'react-redux/es/connect/connect';
 import {
-    Badge,
-    Button,
-    ButtonDropdown,
-    ButtonGroup,
-    ButtonToolbar,
     Card,
     CardBody,
-    CardFooter,
     CardHeader,
-    CardTitle,
     Col,
-    Dropdown,
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
-    Progress,
     Row,
-    Table,
 } from 'reactstrap';
-import AnimatedWrapper from '../layouts/AnimatedLayout';
+import { requestsReset } from '../../actions/CommonActions';
 
-function Dashboard(props) {
-    const {
-        receipsList,
-    } = props;
-
-    const [receips, setReceips] = useState(receipsList);
-    useEffect(() => {
-        setReceips(receipsList)
-    });
+function Dashboard() {
     return (
         <Fragment>
             <Card>
@@ -43,22 +20,13 @@ function Dashboard(props) {
                 <CardBody className="pb-0">
                     <Row>
                         <Col xs="12" md="12" xl="12">
-                            {
-                                receips.map(item => (
-                                        <div key={item.id}>
-                                            <Link to={`/admin/ricetta/${item.id}`}>
-                                                {item.titolo}
-                                            </Link>
-                                        </div>
-                                    )
-                                )
-                            }
+                            Test
                         </Col>
                     </Row>
                 </CardBody>
             </Card>
         </Fragment>
-    )
+    );
 }
 
 const mapStateToProps = state => ({
@@ -74,6 +42,4 @@ const mapDispatchToProps = dispatch => ({
     handleRequestsReset: bindActionCreators(requestsReset, dispatch),
 });
 
-const AnimatedLayout = AnimatedWrapper(Dashboard);
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AnimatedLayout));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Dashboard));

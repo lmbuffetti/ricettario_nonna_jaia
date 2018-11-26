@@ -1,31 +1,19 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import get from 'lodash/get';
 import { bindActionCreators } from 'redux';
-import { requestsReset } from '../../actions/CommonActions';
-import { loadEvents } from '../../actions/firebaseActions';
+import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import connect from 'react-redux/es/connect/connect';
 import {
-    Badge,
-    Button,
-    ButtonDropdown,
-    ButtonGroup,
-    ButtonToolbar,
     Card,
     CardBody,
-    CardFooter,
     CardHeader,
-    CardTitle,
     Col,
-    Dropdown,
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
-    Progress,
     Row,
     Table,
 } from 'reactstrap';
 import moment from 'moment';
+import { requestsReset } from '../../actions/CommonActions';
 
 function Blog(props) {
     const {
@@ -35,14 +23,14 @@ function Blog(props) {
 
     const [receips, setReceips] = useState(receipsList);
     useEffect(() => {
-        setReceips(receipsList)
+        setReceips(receipsList);
     });
     function renderTable() {
         return (
             <tbody>
-            {
-                receips.map(item => {
-                        let currentUser = usersList.find(subitem => item.createdBy === subitem.id);
+                {
+                    receips.map((item) => {
+                        const currentUser = usersList.find(subitem => item.createdBy === subitem.id);
                         let username;
                         if (typeof currentUser !== 'undefined') {
                             username = currentUser.providerData[0].displayName;
@@ -64,12 +52,11 @@ function Blog(props) {
                                     </Link>
                                 </td>
                             </tr>
-                        )
-                    }
-                )
-            }
+                        );
+                    })
+                }
             </tbody>
-        )
+        );
     }
     return (
         <Fragment>
@@ -80,12 +67,12 @@ function Blog(props) {
                         <Col xs="12" md="12" xl="12">
                             <Table>
                                 <thead>
-                                <tr>
-                                    <th>Titolo Articolo</th>
-                                    <th>Autore</th>
-                                    <th>Data di Creazione</th>
-                                    <th>Azioni</th>
-                                </tr>
+                                    <tr>
+                                        <th>Titolo Articolo</th>
+                                        <th>Autore</th>
+                                        <th>Data di Creazione</th>
+                                        <th>Azioni</th>
+                                    </tr>
                                 </thead>
                                 {renderTable()}
                             </Table>
@@ -94,8 +81,18 @@ function Blog(props) {
                 </CardBody>
             </Card>
         </Fragment>
-    )
+    );
 }
+
+Blog.propTypes = {
+    receipsList: PropTypes.arrayOf(PropTypes.object),
+    usersList: PropTypes.arrayOf(PropTypes.object),
+};
+
+Blog.defaultProps = {
+    receipsList: [],
+    usersList: [],
+};
 
 const mapStateToProps = state => ({
     user: get(state, 'user', {}),
@@ -109,7 +106,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     handleRequestsReset: bindActionCreators(requestsReset, dispatch),
-})
-
+});
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Blog));

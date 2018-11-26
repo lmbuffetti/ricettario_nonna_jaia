@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import { withRouter } from 'react-router-dom';
 import connect from 'react-redux/es/connect/connect';
-import FreeAdditionalBoxAutoresize from './FreeAdditionalBoxAutoresize';
 import InputCustom from './InputCustom';
 
 class MultipleDoubleInput extends Component {
@@ -81,7 +80,6 @@ class MultipleDoubleInput extends Component {
     render() {
         const {
             name,
-            subarray,
         } = this.props;
         return (
             <FieldArray name={name} component={this.renderMultipleContribution} />
@@ -94,7 +92,6 @@ MultipleDoubleInput.propTypes = {
     extraClassesButton: PropTypes.string,
     label: PropTypes.string,
     name: PropTypes.string.isRequired,
-    subarray: PropTypes.number,
     labelBis: PropTypes.string,
 };
 
@@ -102,7 +99,6 @@ MultipleDoubleInput.defaultProps = {
     extraClasses: 'span-8',
     extraClassesButton: 'span-8',
     label: '',
-    subarray: null,
     labelBis: null,
 };
 

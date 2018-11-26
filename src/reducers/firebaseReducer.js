@@ -14,6 +14,6 @@ export const defaultState = {
 export default handleActions({
     [LOAD_EVENTS]: state => state,
     [SAVE_EVENTS]: state => state,
-    [SET_EVENTS]: (state, action) => Object.assign({}, state, {receips: action.payload}),
-    [SET_IMAGES]: (state, action) => Object.assign({}, state, {images: action.payload}),
+    [SET_EVENTS]: (state, action) => Object.assign({}, state, { receips: action.payload }),
+    [SET_IMAGES]: (state, action) => Object.assign({}, state, { images: action.payload }),
 }, defaultState);

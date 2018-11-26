@@ -1,57 +1,33 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import { change, Field } from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
 import { bindActionCreators } from 'redux';
-import { saveEvents, updateEvents } from '../../actions/firebaseActions';
-import { reduxForm } from 'redux-form';
 import { withRouter } from 'react-router-dom';
 import connect from 'react-redux/es/connect/connect';
-import InputCustom from '../../components/InputCustom';
-import Select from '../../components/Select';
-import MultipleDoubleInput from '../../components/MultipleDoubleInput';
-import TextareaWysing from '../../components/TextareaWysing';
-import DropzoneUpload from '../../components/DropzoneUpload';
 import {
-    booleanRequired,
-    required,
-    requiredData,
-    requiredMaritalStatus,
-    requiredAtLeastOne,
-} from '../../utils/validation.helper';
-import {
-    Badge,
-    Button,
-    ButtonDropdown,
-    ButtonGroup,
-    ButtonToolbar,
     Card,
     CardBody,
-    CardFooter,
     CardHeader,
-    CardTitle,
-    Col,
-    Dropdown,
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
-    Progress,
-    Row,
-    Table,
 } from 'reactstrap';
+import {
+    required,
+} from '../../utils/validation.helper';
+import { saveEvents, updateEvents } from '../../actions/firebaseActions';
+import InputCustom from '../../components/InputCustom';
+import TextareaWysing from '../../components/TextareaWysing';
+import DropzoneUpload from '../../components/DropzoneUpload';
 
 function Blog(props) {
-    const [isSubmit, setIsSubmit] = useState(false);
+    const [isSubmit] = useState(false);
     const {
-        loggedUserRole,
         handleSaveData,
-        form,
         formValue,
         update,
         id,
         handleUpdateData,
         titolo,
-        authUser
+        authUser,
     } = props;
 
     function saveData(e) {
@@ -107,13 +83,27 @@ function Blog(props) {
                             folderName="imgBlog"
                             val={get(formValue, 'values.images', [])}
                         />
-                        <button className="btn small btn-primary mt-medium" onClick={(e) => saveData(e)}>SAVE</button>
+                        <button type="button" className="btn small btn-primary mt-medium" onClick={e => saveData(e)}>SAVE</button>
                     </div>
                 </CardBody>
             </Card>
         </form>
-    )
+    );
 }
+
+Blog.propTypes = {
+    handleSaveData: PropTypes.func.isRequired,
+    formValue: PropTypes.object.isRequired,
+    update: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    handleUpdateData: PropTypes.func.isRequired,
+    titolo: PropTypes.string.isRequired,
+    authUser: PropTypes.object,
+};
+
+Blog.defaultProps = {
+    authUser: null,
+};
 
 const mapStateToProps = (state, props) => {
     const currentId = get(props, 'match.params.id', null);
@@ -139,12 +129,12 @@ const mapStateToProps = (state, props) => {
         formValue: get(state, 'form.saveBlog', null),
         authUser: get(state, 'firebaseOption.auth', null),
     });
-}
+};
 
 const mapDispatchToProps = dispatch => ({
     handleSaveData: bindActionCreators(saveEvents, dispatch),
     handleUpdateData: bindActionCreators(updateEvents, dispatch),
-})
+});
 
 const initializeForm = reduxForm({
     form: 'saveBlog',

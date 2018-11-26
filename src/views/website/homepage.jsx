@@ -1,12 +1,10 @@
 /* eslint-disable max-len */
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import get from 'lodash/get';
 import { connect } from 'react-redux';
 
 class Slide extends Component {
-
     render() {
         return (
             <div className="App build_page">
@@ -28,7 +26,7 @@ const mapStateToProps = (state, props) => ({
     orderSlide: get(props, 'location.state.order', null),
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = () => ({
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Slide));

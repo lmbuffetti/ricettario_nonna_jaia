@@ -2,12 +2,9 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import connect from 'react-redux/es/connect/connect';
-import { change, Field } from 'redux-form';
-// Require Editor JS files.
-import 'froala-editor/js/froala_editor.pkgd.min.js';
-
+import { change } from 'redux-form';
+import 'froala-editor/js/froala_editor.pkgd.min';
 import FroalaEditor from 'react-froala-wysiwyg';
-import get from 'lodash/get';
 
 function TextareaWysing(props) {
     const {
@@ -23,40 +20,36 @@ function TextareaWysing(props) {
     }
     useEffect(() => {
         if (val !== model) {
-            setModel(val)
+            setModel(val);
         }
     });
     return (
         <FroalaEditor
-            tag='textarea'
+            tag="textarea"
             config={{
                 placeholderText: 'Edit Your Content Here!',
-                charCounterCount: false
+                charCounterCount: false,
             }}
             model={model}
-            onModelChange={(e) => handleModelChange(e)}
+            onModelChange={e => handleModelChange(e)}
         />
     );
 }
 
 TextareaWysing.propTypes = {
-    input: PropTypes.object.isRequired,
-    extraClasses: PropTypes.string,
+    formName: PropTypes.string,
     fieldName: PropTypes.string,
-    label: PropTypes.string,
-    placeholder: PropTypes.string,
-    value: PropTypes.string,
+    changeFieldValue: PropTypes.func.isRequired,
+    val: PropTypes.string,
 };
 
 TextareaWysing.defaultProps = {
-    extraClasses: '',
-    label: '',
+    formName: '',
     fieldName: '',
-    placeholder: '',
-    value: '',
+    val: '',
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
     changeFieldValue: (formName, field, value) => {

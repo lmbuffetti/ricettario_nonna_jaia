@@ -7,7 +7,7 @@ const ROOT_DIR = path.resolve(__dirname, '.');
 const BUILD_DIR = path.join(ROOT_DIR, 'static');
 module.exports = {
     entry: [
-        './src/index.js',
+        './src/index.jsx',
         './styles/main.scss',
     ],
     output: {

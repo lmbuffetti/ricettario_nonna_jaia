@@ -1,58 +1,35 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import { change, Field } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import { bindActionCreators } from 'redux';
-import { saveEvents, updateEvents } from '../../actions/firebaseActions';
-import { reduxForm } from 'redux-form';
 import { withRouter } from 'react-router-dom';
 import connect from 'react-redux/es/connect/connect';
+import PropTypes from 'prop-types';
+import {
+    Card,
+    CardBody,
+    CardHeader,
+} from 'reactstrap';
 import InputCustom from '../../components/InputCustom';
 import Select from '../../components/Select';
 import MultipleDoubleInput from '../../components/MultipleDoubleInput';
 import TextareaWysing from '../../components/TextareaWysing';
 import DropzoneUpload from '../../components/DropzoneUpload';
 import {
-    booleanRequired,
     required,
-    requiredData,
-    requiredMaritalStatus,
-    requiredAtLeastOne,
 } from '../../utils/validation.helper';
-import {
-    Badge,
-    Button,
-    ButtonDropdown,
-    ButtonGroup,
-    ButtonToolbar,
-    Card,
-    CardBody,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-    Col,
-    Dropdown,
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
-    Progress,
-    Row,
-    Table,
-} from 'reactstrap';
-import AnimatedWrapper from '../layouts/AnimatedLayout';
+import { saveEvents, updateEvents } from '../../actions/firebaseActions';
 
 function Receips(props) {
-    const [isSubmit, setIsSubmit] = useState(false);
+    const [isSubmit] = useState(false);
     const {
-        loggedUserRole,
         handleSaveData,
-        form,
         formValue,
         update,
         id,
         handleUpdateData,
         titolo,
-        authUser
+        authUser,
     } = props;
 
     function saveData(e) {
@@ -94,9 +71,9 @@ function Receips(props) {
                             label="Difficoltà"
                             placeholder="Select country"
                             options={[
-                                {id: 0, name: 'Facile', code:'facile'},
-                                {id: 0, name: 'Medio', code:'medio'},
-                                {id: 0, name: 'Difficile', code:'difficile'}
+                                { id: 0, name: 'Facile', code: 'facile' },
+                                { id: 0, name: 'Medio', code: 'medio' },
+                                { id: 0, name: 'Difficile', code: 'difficile' },
                             ]}
                             validate={[
                                 required,
@@ -132,13 +109,37 @@ function Receips(props) {
                             folderName="imgRicette"
                             val={get(formValue, 'values.images', [])}
                         />
-                        <button className="btn small btn-primary mt-medium" onClick={(e) => saveData(e)}>SAVE</button>
+                        <button
+                            type="button"
+                            className="btn small btn-primary mt-medium"
+                            onClick={e => saveData(e)}
+                        >
+                            SAVE
+                        </button>
                     </div>
                 </CardBody>
             </Card>
         </form>
-    )
+    );
 }
+
+Receips.propTypes = {
+    handleSaveData: PropTypes.func.isRequired,
+    formValue: PropTypes.object.isRequired,
+    update: PropTypes.string,
+    id: PropTypes.string,
+    handleUpdateData: PropTypes.func.isRequired,
+    titolo: PropTypes.string,
+    authUser: PropTypes.object,
+};
+
+Receips.defaultProps = {
+    update: null,
+    id: null,
+    titolo: null,
+    authUser: null,
+};
+
 
 const mapStateToProps = (state, props) => {
     const currentId = get(props, 'match.params.id', null);
@@ -166,18 +167,16 @@ const mapStateToProps = (state, props) => {
         loadedFirebase: get(state, 'firebaseOption.auth.isLoaded', null),
         formValue: get(state, 'form.saveReceips', null),
     });
-}
+};
 
 const mapDispatchToProps = dispatch => ({
     handleSaveData: bindActionCreators(saveEvents, dispatch),
     handleUpdateData: bindActionCreators(updateEvents, dispatch),
-})
-
-const AnimatedLayout = AnimatedWrapper(Receips);
+});
 
 const initializeForm = reduxForm({
     form: 'saveReceips',
     enableReinitialize: true,
-})(AnimatedLayout);
+})(Receips);
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(initializeForm));

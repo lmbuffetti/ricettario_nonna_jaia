@@ -1,33 +1,19 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import get from 'lodash/get';
 import { bindActionCreators } from 'redux';
-import { requestsReset } from '../../actions/CommonActions';
-import { loadEvents } from '../../actions/firebaseActions';
+import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import connect from 'react-redux/es/connect/connect';
 import moment from 'moment';
-
 import {
-    Badge,
-    Button,
-    ButtonDropdown,
-    ButtonGroup,
-    ButtonToolbar,
     Card,
     CardBody,
-    CardFooter,
     CardHeader,
-    CardTitle,
     Col,
-    Dropdown,
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
-    Progress,
     Row,
     Table,
 } from 'reactstrap';
-import AnimatedWrapper from '../layouts/AnimatedLayout';
+import { requestsReset } from '../../actions/CommonActions';
 
 function Ricette(props) {
     const {
@@ -38,20 +24,20 @@ function Ricette(props) {
     const [receips, setReceips] = useState(receipsList);
     useEffect(() => {
         if (JSON.stringify(receips) !== JSON.stringify(receipsList)) {
-            setReceips(receipsList)
+            setReceips(receipsList);
         }
     });
     function renderTable() {
         return (
             <tbody>
-            {
-                receips.map(item => {
-                    let currentUser = usersList.find(subitem => item.createdBy === subitem.id);
-                    let username;
-                    if (typeof currentUser !== 'undefined') {
-                        username = currentUser.providerData[0].displayName;
-                    }
-                    return (
+                {
+                    receips.map((item) => {
+                        const currentUser = usersList.find(subitem => item.createdBy === subitem.id);
+                        let username;
+                        if (typeof currentUser !== 'undefined') {
+                            username = currentUser.providerData[0].displayName;
+                        }
+                        return (
                             <tr key={item.id}>
                                 <td>
                                     {item.titolo}
@@ -68,12 +54,11 @@ function Ricette(props) {
                                     </Link>
                                 </td>
                             </tr>
-                        )
-                    }
-                )
-            }
+                        );
+                    })
+                }
             </tbody>
-        )
+        );
     }
     return (
         <Fragment>
@@ -84,12 +69,12 @@ function Ricette(props) {
                         <Col xs="12" md="12" xl="12">
                             <Table>
                                 <thead>
-                                <tr>
-                                    <th>Nome ricetta</th>
-                                    <th>Autore</th>
-                                    <th>Data di Creazione</th>
-                                    <th>Azioni</th>
-                                </tr>
+                                    <tr>
+                                        <th>Nome ricetta</th>
+                                        <th>Autore</th>
+                                        <th>Data di Creazione</th>
+                                        <th>Azioni</th>
+                                    </tr>
                                 </thead>
                                 {renderTable()}
                             </Table>
@@ -98,8 +83,18 @@ function Ricette(props) {
                 </CardBody>
             </Card>
         </Fragment>
-    )
+    );
 }
+
+Ricette.propTypes = {
+    receipsList: PropTypes.arrayOf(PropTypes.object),
+    usersList: PropTypes.arrayOf(PropTypes.object),
+};
+
+Ricette.defaultProps = {
+    receipsList: [],
+    usersList: [],
+};
 
 const mapStateToProps = state => ({
     user: get(state, 'user', {}),

@@ -26,12 +26,12 @@ export const RouteWithLayout = ({
 RouteWithLayout.propTypes = {
     layout: PropTypes.oneOfType([
         PropTypes.func,
-        PropTypes.object
-    ]),
+        PropTypes.object,
+    ]).isRequired,
     component: PropTypes.oneOfType([
         PropTypes.func,
-        PropTypes.object
-    ]),
+        PropTypes.object,
+    ]).isRequired,
     menu: PropTypes.string,
     menu_footer: PropTypes.string,
     menu_header: PropTypes.string,

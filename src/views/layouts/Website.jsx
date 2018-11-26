@@ -1,8 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import get from 'lodash/get';
 import { requestsReset } from '../../actions/CommonActions';
@@ -15,7 +14,7 @@ class Website extends Component {
 
         const {
             handleRequestsReset,
-            handleLoadEvents
+            handleLoadEvents,
         } = this.props;
 
         const body = {};
@@ -23,6 +22,7 @@ class Website extends Component {
         handleLoadEvents(body);
         handleRequestsReset();
     }
+
     componentWillMount() {
         const { titleHeader } = this.props;
         document.title = titleHeader;
@@ -45,23 +45,15 @@ class Website extends Component {
 }
 
 Website.propTypes = {
-    // isLoading: PropTypes.bool,
     children: PropTypes.object.isRequired,
     handleRequestsReset: PropTypes.func.isRequired,
     handleLoadEvents: PropTypes.func.isRequired,
-    menuHeader: PropTypes.string,
-    menuFooter: PropTypes.string,
-    menuPosition: PropTypes.string,
     classPage: PropTypes.string,
     titleHeader: PropTypes.string,
     loggedUserRole: PropTypes.string,
     loggedUser: PropTypes.object,
 };
 Website.defaultProps = {
-    // isLoading: true,
-    menuHeader: '',
-    menuFooter: '',
-    menuPosition: '',
     classPage: '',
     titleHeader: '',
     loggedUser: null,

@@ -30,16 +30,17 @@ function Uploader(props) {
     function onFilesDrop(files) {
         const storageRef = firebase.storage().ref();
         const listImages = val;
-        files.map(item => {
+        files.map((item) => {
             const name = Math.floor(Date.now() / 1000);
             const ext = item.name.split('.')[item.name.split('.').length - 1];
-            let mountainImagesRef = storageRef.child(`${folderName}/${name}.${ext}`);
-            mountainImagesRef.put(item).then(function(snapshot) {
+            const mountainImagesRef = storageRef.child(`${folderName}/${name}.${ext}`);
+            mountainImagesRef.put(item).then(() => {
                 listImages.push(`${name}.${ext}`);
                 setModel(listImages);
                 changeFieldValue(formName, fieldName, listImages);
             });
-        })
+            return null;
+        });
     }
 
     function onFileDelete(file, key, e) {
@@ -48,7 +49,7 @@ function Uploader(props) {
         const storageRef = firebase.storage().ref();
         const desertRef = storageRef.child(`${folderName}/${file}`);
         const listImages = val;
-        desertRef.delete().then(function() {
+        desertRef.delete().then(() => {
             // File deleted successfully
             const index = listImages.indexOf(file);
             if (index > -1) {
@@ -56,7 +57,7 @@ function Uploader(props) {
             }
             changeFieldValue(formName, fieldName, listImages);
             setModel(listImages);
-        })
+        });
     }
     return (
         <div>
@@ -66,7 +67,7 @@ function Uploader(props) {
                     {map(model, (file, key) => (
                         <div key={file + key}>
                             <span>{file}</span>
-                            <button onClick={(e) => onFileDelete(file, key, e)}>Delete File</button>
+                            <button type="button" onClick={e => onFileDelete(file, key, e)}>Delete File</button>
                         </div>
                     ))}
                 </div>
@@ -75,8 +76,23 @@ function Uploader(props) {
                 <div>Drag and drop files here or click to select</div>
             </Dropzone>
         </div>
-    )
+    );
 }
+
+Uploader.propTypes = {
+    folderName: PropTypes.string,
+    formName: PropTypes.string,
+    fieldName: PropTypes.string,
+    val: PropTypes.string,
+    changeFieldValue: PropTypes.func.isRequired,
+};
+
+Uploader.defaultProps = {
+    folderName: null,
+    formName: null,
+    fieldName: null,
+    val: null,
+};
 
 const mapStateToProps = () => ({});
 

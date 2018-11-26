@@ -1,7 +1,6 @@
 {
   "extends": "airbnb",
   "rules": {
-    "react-hooks/rules-of-hooks": "error",
     "indent": [
       2,
       4,
@@ -87,7 +86,6 @@
   "plugins": [
     "react",
     "jsx-a11y",
-    "react-hooks"
   ],
   "parserOptions": {
     "ecmaFeatures": {

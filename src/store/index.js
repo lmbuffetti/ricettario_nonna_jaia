@@ -1,12 +1,11 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import thunk from 'redux-thunk';
+import firebase from 'firebase';
+import { getFirebase, reactReduxFirebase } from 'react-redux-firebase';
 import { rootReducer } from '../reducers';
 import UserMiddleware from '../middlewares/UserMiddleware';
 import WebappMiddleware from '../middlewares/firebaseMiddleware';
 import CommonMiddleware from '../middlewares/CommonMiddleware';
-import firebase from 'firebase'
-import { getFirebase, reactReduxFirebase } from 'react-redux-firebase'
 import { fbConfig } from '../config/firebaseConfig';
 
 const middlewares = [thunkMiddleware];
@@ -27,18 +26,18 @@ const rrfConfig = {
     profileFactory: user => ({
         email: user.email || user.providerData[0].email,
         role: 'user',
-        providerData: user.providerData
+        providerData: user.providerData,
     }),
-    fileMetadataFactory: (uploadRes, firebase, metadata, downloadURL) => {
+    fileMetadataFactory: (uploadRes, Firebase, metadata, downloadURL) => {
         // upload response from Firebase's storage upload
         const { metadata: { name, fullPath } } = uploadRes;
         // default factory includes name, fullPath, downloadURL
         return {
             name,
             fullPath,
-            downloadURL
-        }
-    }
+            downloadURL,
+        };
+    },
 };
 
 function configureStore(data) {
@@ -54,7 +53,7 @@ function configureStore(data) {
                 UserMiddleware,
                 CommonMiddleware,
                 WebappMiddleware,
-                thunk.withExtraArgument(getFirebase)
+                thunkMiddleware.withExtraArgument(getFirebase),
             ),
         ),
     );
