@@ -15,9 +15,8 @@ import {
     AppSidebarNav,
 } from '@coreui/react';
 
-const DefaultAside = React.lazy(() => import('./DefaultAside'));
-const DefaultFooter = React.lazy(() => import('./DefaultFooter'));
-const DefaultHeader = React.lazy(() => import('./DefaultHeader'));
+const DefaultFooter = React.lazy(() => import('../../components/AdminFooter'));
+const DefaultHeader = React.lazy(() => import('../../components/AdminHeader'));
 
 import navigation from '../../config/nav';
 import connect from 'react-redux/es/connect/connect';
@@ -32,7 +31,7 @@ import {
     TransitionGroup,
 } from 'react-transition-group';
 
-class DefaultLayout extends Component {
+class AdminLayout extends Component {
 
     constructor(props) {
         super(props);
@@ -116,7 +115,7 @@ class DefaultLayout extends Component {
     }
 }
 
-DefaultLayout.propTypes = {
+AdminLayout.propTypes = {
     // isLoading: PropTypes.bool,
     children: PropTypes.object.isRequired,
     handleRequestsReset: PropTypes.func.isRequired,
@@ -135,7 +134,7 @@ DefaultLayout.propTypes = {
     userName: PropTypes.string,
     handleLoadStorage: PropTypes.func.isRequired,
 };
-DefaultLayout.defaultProps = {
+AdminLayout.defaultProps = {
     // isLoading: true,
     menuHeader: '',
     menuFooter: '',
@@ -168,4 +167,4 @@ const mapDispatchToProps = dispatch => ({
     handleLoadStorage: bindActionCreators(loadStorage, dispatch),
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DefaultLayout));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AdminLayout));

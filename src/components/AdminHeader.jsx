@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Badge, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem, NavLink } from 'reactstrap';
+import { DropdownItem, DropdownMenu, DropdownToggle, Nav } from 'reactstrap';
 import PropTypes from 'prop-types';
 
-import { AppAsideToggler, AppHeaderDropdown, AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
-import logo from '../../../static/img/logoWhite.png'
+import { AppHeaderDropdown, AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
+import logo from '../../static/img/logoWhite.png'
 
 const propTypes = {
   children: PropTypes.node,
@@ -12,7 +11,7 @@ const propTypes = {
 
 const defaultProps = {};
 
-class DefaultHeader extends Component {
+class AdminHeader extends Component {
   render() {
 
     // eslint-disable-next-line
@@ -43,7 +42,7 @@ class DefaultHeader extends Component {
   }
 }
 
-DefaultHeader.propTypes = propTypes;
-DefaultHeader.defaultProps = defaultProps;
+AdminHeader.propTypes = propTypes;
+AdminHeader.defaultProps = defaultProps;
 
-export default DefaultHeader;
+export default AdminHeader;

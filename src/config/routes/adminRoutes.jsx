@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AdminLayout = React.lazy(() => import('../../views/DefaultLayout/DefaultLayout'));
+const AdminLayout = React.lazy(() => import('../../views/layouts/AdminLayout'));
 const Dashboard = React.lazy(() => import('../../views/admin/dashboard'));
 const Ricette = React.lazy(() => import('../../views/admin/ricette'));
 const Receips = React.lazy(() => import('../../views/admin/receips'));
