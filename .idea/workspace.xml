@@ -2,39 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a6c3188-c10c-4129-abb9-24b89d4e92e3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/firebaseActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/firebaseActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AdminFooter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminFooter.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AdminHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminHeader.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AdminSidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminSidebar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DropzoneUpload.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DropzoneUpload.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ErrorMessage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ErrorMessage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MultipleDoubleInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MultipleDoubleInput.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TextareaWysing.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TextareaWysing.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/nav.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/nav.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middlewares/UserMiddleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/middlewares/UserMiddleware.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middlewares/firebaseMiddleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/middlewares/firebaseMiddleware.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/firebaseReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/firebaseReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/route/route.helper.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/route/route.helper.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Root.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Root.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/admin/blog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/admin/blog.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/admin/dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/admin/dashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/admin/editBlog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/admin/editBlog.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/admin/receips.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/admin/receips.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/admin/ricette.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/admin/ricette.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/layouts/AdminLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layouts/AdminLayout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/layouts/AnimatedLayout.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/layouts/Website.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layouts/Website.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/website/homepage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/website/homepage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.common.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <list id="20cc0c80-a123-4d6d-9869-21974e18d7df" name="No push" comment="">
       <change afterPath="$PROJECT_DIR$/src/config/firebaseConfig.js" afterDir="false" />
@@ -47,18 +16,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/MultipleDoubleInput.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="100" column="14" selection-start-line="100" selection-start-column="14" selection-end-line="100" selection-end-column="14" />
-              <folding>
-                <element signature="e#31#72#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/FreeAdditionalBoxAutoresize.jsx">
           <provider selected="true" editor-type-id="text-editor">
@@ -92,6 +49,18 @@
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="180">
+                <caret line="11" column="42" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -140,11 +109,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="180">
+              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
               <folding>
                 <element signature="e#28#65#0" expanded="true" />
               </folding>
@@ -218,7 +187,6 @@
         <option value="$PROJECT_DIR$/styles/main.scss" />
         <option value="$PROJECT_DIR$/src/views/DefaultLayout/DefaultFooter.js" />
         <option value="$PROJECT_DIR$/src/actions/types/firebaseTypes.js" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/views/layouts/AnimatedLayout.jsx" />
         <option value="$PROJECT_DIR$/src/views/DefaultLayout/DefaultLayout.js" />
         <option value="$PROJECT_DIR$/src/config/routes/adminRoutes.jsx" />
@@ -254,6 +222,7 @@
         <option value="$PROJECT_DIR$/src/components/Login.jsx" />
         <option value="$PROJECT_DIR$/src/actions/firebaseActions.js" />
         <option value="$PROJECT_DIR$/src/index.jsx" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -518,7 +487,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543244638021" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543246054446" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -608,7 +577,7 @@
       <updated>1542634537821</updated>
       <workItem from="1542634541867" duration="10551000" />
       <workItem from="1542791858363" duration="70483000" />
-      <workItem from="1543226669476" duration="13880000" />
+      <workItem from="1543226669476" duration="14270000" />
     </task>
     <task id="LOCAL-00001" summary="First Deploy">
       <created>1542638282603</created>
@@ -771,11 +740,18 @@
       <option name="project" value="LOCAL" />
       <updated>1543239218527</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="EsLint Fix Error">
+      <created>1543244658786</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1543244658786</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94914000" />
+    <option name="totallyTimeSpent" value="95304000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1027" extended-state="0" />
@@ -830,7 +806,8 @@
     <MESSAGE value="Add Documentation" />
     <MESSAGE value="Add List Blog and Receips" />
     <MESSAGE value="Fix Order Files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix Order Files" />
+    <MESSAGE value="EsLint Fix Error" />
+    <option name="LAST_COMMIT_MESSAGE" value="EsLint Fix Error" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -844,16 +821,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/config/routes/websiteRoutes.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="31" lean-forward="true" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/config/appHistory.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1272,11 +1239,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="180">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
           <folding>
             <element signature="e#28#65#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="180">
+            <caret line="11" column="42" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
