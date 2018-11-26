@@ -50,13 +50,18 @@ function Blog(props) {
         update,
         id,
         handleUpdateData,
-        titolo
+        titolo,
+        authUser
     } = props;
 
     function saveData(e) {
         e.preventDefault();
         const body = formValue.values;
         body.selectorDB = 'Blog';
+        body.created = body.created !== null ? body.created : new Date().getTime();
+        body.createdBy = body.createdBy !== null ? body.createdBy : authUser.uid;
+        body.modified = new Date().getTime();
+        body.modifiedBy = authUser.uid;
         if (update) {
             body.selector = id;
             handleUpdateData(body);
@@ -99,6 +104,7 @@ function Blog(props) {
                         <DropzoneUpload
                             fieldName="images"
                             formName="saveBlog"
+                            folderName="imgBlog"
                             val={get(formValue, 'values.images', [])}
                         />
                         <button className="btn small btn-primary mt-medium" onClick={(e) => saveData(e)}>SAVE</button>
@@ -118,6 +124,8 @@ const mapStateToProps = (state, props) => {
             titolo: get(curEvent, 'titolo', null),
             description: get(curEvent, 'description', null),
             images: get(curEvent, 'images', []),
+            created: get(curEvent, 'created', null),
+            createdBy: get(curEvent, 'createdBy', null),
         },
         titolo: get(curEvent, 'titolo', 'Aggiungi Nuova Ricetta'),
         id: currentId,
@@ -129,6 +137,7 @@ const mapStateToProps = (state, props) => {
         loggedUserRole: get(state, 'firebaseOption.profile.role', null),
         loadedFirebase: get(state, 'firebaseOption.auth.isLoaded', null),
         formValue: get(state, 'form.saveBlog', null),
+        authUser: get(state, 'firebaseOption.auth', null),
     });
 }
 

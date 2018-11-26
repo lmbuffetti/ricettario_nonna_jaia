@@ -25,33 +25,70 @@ import {
     Row,
     Table,
 } from 'reactstrap';
+import moment from 'moment';
 
 function Blog(props) {
     const {
         receipsList,
+        usersList,
     } = props;
 
     const [receips, setReceips] = useState(receipsList);
     useEffect(() => {
         setReceips(receipsList)
     });
+    function renderTable() {
+        return (
+            <tbody>
+            {
+                receips.map(item => {
+                        let currentUser = usersList.find(subitem => item.createdBy === subitem.id);
+                        let username;
+                        if (typeof currentUser !== 'undefined') {
+                            username = currentUser.providerData[0].displayName;
+                        }
+                        return (
+                            <tr key={item.id}>
+                                <td>
+                                    {item.titolo}
+                                </td>
+                                <td>
+                                    {username}
+                                </td>
+                                <td>
+                                    {moment(item.created).format('MMMM Do YYYY')}
+                                </td>
+                                <td>
+                                    <Link to={`/admin/edit-ricetta/${item.id}`}>
+                                        Modifica
+                                    </Link>
+                                </td>
+                            </tr>
+                        )
+                    }
+                )
+            }
+            </tbody>
+        )
+    }
     return (
         <Fragment>
             <Card>
-                <CardHeader className="mb-0">Dashboard</CardHeader>
+                <CardHeader className="mb-0">Lista Ricette</CardHeader>
                 <CardBody className="pb-0">
                     <Row>
                         <Col xs="12" md="12" xl="12">
-                            {
-                                receips.map(item => (
-                                        <div key={item.id}>
-                                            <Link to={`/admin/edit-blog/${item.id}`}>
-                                                {item.titolo}
-                                            </Link>
-                                        </div>
-                                    )
-                                )
-                            }
+                            <Table>
+                                <thead>
+                                <tr>
+                                    <th>Titolo Articolo</th>
+                                    <th>Autore</th>
+                                    <th>Data di Creazione</th>
+                                    <th>Azioni</th>
+                                </tr>
+                                </thead>
+                                {renderTable()}
+                            </Table>
                         </Col>
                     </Row>
                 </CardBody>
@@ -67,6 +104,7 @@ const mapStateToProps = state => ({
     loggedUser: get(state, 'firebase.profile.providerData[0]', null),
     loggedUserRole: get(state, 'firebase.profile.role', null),
     receipsList: get(state, 'firebase.receips["Blog"]', []),
+    usersList: get(state, 'firebase.receips["users"]', []),
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -48,16 +48,13 @@ const fetchPlan = store => next => (action) => {
             firebase.database().ref(`${selectorDB}/${selector}`).set(
                 action.payload
             );
-            store.dispatch({ type: LOAD_EVENTS });
+            store.dispatch({ type: LOAD_EVENTS, payload: {selectorDB} });
             break;
         }
         case LOAD_STORAGE: {
-            console.log('test');
             const { selectorDB } = action.payload;
             delete action.payload.selectorDB;
             const db = firebase.storage().ref();
-            console.log('test',getFirebase);
-
             break;
         }
         default:

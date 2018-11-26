@@ -10,11 +10,9 @@ import Header from '../../components/Header';
 import { loadEvents } from '../../actions/firebaseActions';
 import Spinner from '../../components/Spinner'
 import AdminSidebar from '../../components/AdminSidebar';
+import AnimatedWrapper from "./AnimatedLayout";
 
-import {
-    CSSTransition,
-    TransitionGroup,
-} from 'react-transition-group';
+import TransitionGroup from "react-transition-group/TransitionGroup";
 
 class AdminLayout extends Component {
     constructor(props) {
@@ -31,6 +29,8 @@ class AdminLayout extends Component {
         handleLoadEvents(body);
         const bodyBis = {};
         bodyBis.selectorDB = 'Blog';
+        handleLoadEvents(bodyBis);
+        bodyBis.selectorDB = 'users';
         handleLoadEvents(bodyBis);
     }
     componentWillMount() {
@@ -65,12 +65,7 @@ class AdminLayout extends Component {
                         <AdminSidebar menu={menuHeader} extraClass="col-2" />
                         <div className="col-10 pl-small">
                             <TransitionGroup className="todo-list">
-                                <CSSTransition
-                                    timeout={5000}
-                                    classNames="fade"
-                                >
-                                    {React.cloneElement(children)}
-                                </CSSTransition>
+                                {React.cloneElement(children)}
                             </TransitionGroup>
                         </div>
                     </div>
@@ -125,7 +120,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     handleRequestsReset: bindActionCreators(requestsReset, dispatch),
     handleLoadEvents: bindActionCreators(loadEvents, dispatch),
-})
+});
 
 const initializeForm = reduxForm({
     form: 'test',

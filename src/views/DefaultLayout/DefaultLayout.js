@@ -27,6 +27,10 @@ import { bindActionCreators } from 'redux';
 import { requestsReset } from '../../actions/CommonActions';
 import { loadEvents, loadStorage } from '../../actions/firebaseActions';
 import { reduxForm } from 'redux-form';
+import {
+    CSSTransition,
+    TransitionGroup,
+} from 'react-transition-group';
 
 class DefaultLayout extends Component {
 
@@ -43,7 +47,9 @@ class DefaultLayout extends Component {
         const bodyBis = {};
         bodyBis.selectorDB = 'Blog';
         handleLoadEvents(bodyBis);
-        handleLoadStorage('Ricette')
+        handleLoadStorage('Ricette');
+        bodyBis.selectorDB = 'users';
+        handleLoadEvents(bodyBis);
     }
 
     loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
@@ -86,7 +92,16 @@ class DefaultLayout extends Component {
                         <AppBreadcrumb/>
                         <Container fluid>
                             <Suspense fallback={this.loading()}>
-                                {React.cloneElement(children)}
+                                <TransitionGroup
+                                    className="carousel"
+                                >
+                                    <CSSTransition
+                                        timeout={500}
+                                        classNames="fade"
+                                    >
+                                        {React.cloneElement(children)}
+                                    </CSSTransition>
+                                </TransitionGroup>
                             </Suspense>
                         </Container>
                     </main>

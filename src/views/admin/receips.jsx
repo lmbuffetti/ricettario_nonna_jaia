@@ -39,6 +39,7 @@ import {
     Row,
     Table,
 } from 'reactstrap';
+import AnimatedWrapper from '../layouts/AnimatedLayout';
 
 function Receips(props) {
     const [isSubmit, setIsSubmit] = useState(false);
@@ -50,13 +51,18 @@ function Receips(props) {
         update,
         id,
         handleUpdateData,
-        titolo
+        titolo,
+        authUser
     } = props;
 
     function saveData(e) {
         e.preventDefault();
         const body = formValue.values;
         body.selectorDB = 'Ricette';
+        body.created = body.created !== null ? body.created : new Date().getTime();
+        body.createdBy = body.createdBy !== null ? body.createdBy : authUser.uid;
+        body.modified = new Date().getTime();
+        body.modifiedBy = authUser.uid;
         if (update) {
             body.selector = id;
             handleUpdateData(body);
@@ -123,6 +129,7 @@ function Receips(props) {
                         <DropzoneUpload
                             fieldName="images"
                             formName="saveReceips"
+                            folderName="imgRicette"
                             val={get(formValue, 'values.images', [])}
                         />
                         <button className="btn small btn-primary mt-medium" onClick={(e) => saveData(e)}>SAVE</button>
@@ -144,6 +151,8 @@ const mapStateToProps = (state, props) => {
             ingredients: get(curEvent, 'ingredients', null),
             description: get(curEvent, 'description', null),
             images: get(curEvent, 'images', []),
+            created: get(curEvent, 'created', null),
+            createdBy: get(curEvent, 'createdBy', null),
         },
         titolo: get(curEvent, 'titolo', 'Aggiungi Nuova Ricetta'),
         id: currentId,
@@ -152,6 +161,7 @@ const mapStateToProps = (state, props) => {
         users: get(state, 'users', {}),
         isLoading: get(state, 'common.isLoading', 1),
         loggedUser: get(state, 'firebaseOption.profile.providerData[0]', null),
+        authUser: get(state, 'firebaseOption.auth', null),
         loggedUserRole: get(state, 'firebaseOption.profile.role', null),
         loadedFirebase: get(state, 'firebaseOption.auth.isLoaded', null),
         formValue: get(state, 'form.saveReceips', null),
@@ -163,9 +173,11 @@ const mapDispatchToProps = dispatch => ({
     handleUpdateData: bindActionCreators(updateEvents, dispatch),
 })
 
+const AnimatedLayout = AnimatedWrapper(Receips);
+
 const initializeForm = reduxForm({
     form: 'saveReceips',
     enableReinitialize: true,
-})(Receips);
+})(AnimatedLayout);
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(initializeForm));

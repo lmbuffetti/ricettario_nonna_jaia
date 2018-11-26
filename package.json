@@ -17,6 +17,7 @@
     "@coreui/coreui-plugin-chartjs-custom-tooltips": "^1.2.0",
     "@coreui/icons": "0.3.0",
     "@coreui/react": "^2.1.1",
+    "animated": "^0.2.2",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "firebase": "^5.5.9",

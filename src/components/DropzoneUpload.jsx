@@ -32,9 +32,10 @@ function Uploader(props) {
         const listImages = val;
         files.map(item => {
             const name = Math.floor(Date.now() / 1000);
-            let mountainImagesRef = storageRef.child(`${folderName}/${name}.jpg`);
+            const ext = item.name.split('.')[item.name.split('.').length - 1];
+            let mountainImagesRef = storageRef.child(`${folderName}/${name}.${ext}`);
             mountainImagesRef.put(item).then(function(snapshot) {
-                listImages.push(`${name}.jpg`);
+                listImages.push(`${name}.${ext}`);
                 setModel(listImages);
                 changeFieldValue(formName, fieldName, listImages);
             });
@@ -77,8 +78,7 @@ function Uploader(props) {
     )
 }
 
-const mapStateToProps = state => {
-};
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
     changeFieldValue: (formName, field, value) => {

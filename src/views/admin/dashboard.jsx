@@ -25,6 +25,7 @@ import {
     Row,
     Table,
 } from 'reactstrap';
+import AnimatedWrapper from '../layouts/AnimatedLayout';
 
 function Dashboard(props) {
     const {
@@ -71,7 +72,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     handleRequestsReset: bindActionCreators(requestsReset, dispatch),
-})
+});
 
+const AnimatedLayout = AnimatedWrapper(Dashboard);
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Dashboard));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AnimatedLayout));
