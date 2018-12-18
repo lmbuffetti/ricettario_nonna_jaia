@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import get from 'lodash/get';
 import { Field, reduxForm } from 'redux-form';
 import { bindActionCreators } from 'redux';
@@ -22,8 +22,10 @@ import {
 } from '../../utils/validation.helper';
 import { saveEvents, updateEvents } from '../../actions/firebaseActions';
 import 'cropperjs/dist/cropper.css';
+import firebase from 'firebase';
 
 function Receips(props) {
+    const { currentCover } = props;
     const inputEl = useRef('');
     const [isSubmit] = useState(false);
     const [crop] = useState({
@@ -33,7 +35,7 @@ function Receips(props) {
         height: 10,
     });
     const [img, setImg] = useState('');
-    const [newImg, setNewImg] = useState('');
+    const [newImg, setNewImg] = useState(null);
     const {
         handleSaveData,
         formValue,
@@ -47,11 +49,18 @@ function Receips(props) {
     function saveData(e) {
         e.preventDefault();
         const body = formValue.values;
+        const nameImg = 'test.jpg';
+        const folderName = 'imgCoverRicette';
         body.selectorDB = 'Ricette';
         body.created = body.created !== null ? body.created : new Date().getTime();
         body.createdBy = body.createdBy !== null ? body.createdBy : authUser.uid;
+        body.coverImg = nameImg;
         body.modified = new Date().getTime();
         body.modifiedBy = authUser.uid;
+        const storageRef = firebase.storage().ref();
+        const desertRef = storageRef.child(`${folderName}/${currentCover}`);
+        desertRef.delete();
+        storageRef.child(`${folderName}/${nameImg}`).putString(newImg.split(',')[1], 'base64', { contentType: 'image/jpg' });
         if (update) {
             body.selector = id;
             handleUpdateData(body);
@@ -85,7 +94,7 @@ function Receips(props) {
                             guides={false}
                             crop={handleCrop}
                         />
-                        <img src={newImg} alt="test" />
+                        <img src={newImg || currentCover} alt="test" />
                         <Field
                             name="titolo"
                             component={InputCustom}
@@ -164,6 +173,7 @@ Receips.propTypes = {
     handleUpdateData: PropTypes.func.isRequired,
     titolo: PropTypes.string,
     authUser: PropTypes.object,
+    currentCover: PropTypes.string,
 };
 
 Receips.defaultProps = {
@@ -171,6 +181,7 @@ Receips.defaultProps = {
     id: null,
     titolo: null,
     authUser: null,
+    currentCover: null,
 };
 
 
@@ -178,6 +189,15 @@ const mapStateToProps = (state, props) => {
     const currentId = get(props, 'match.params.id', null);
     const allEvents = get(state, 'firebase.receips["Ricette"]', []);
     const curEvent = allEvents.find(item => item.id === currentId);
+    const storageRef = firebase.storage().ref();
+    const coverName = get(curEvent, 'coverImg', null);
+    let coverImg = '';
+    if (coverName !== null) {
+        storageRef.child(`imgCoverRicette/${coverName}`).getDownloadURL().then((url) => {
+            console.log(url);
+            coverImg = url;
+        });
+    }
     return ({
         initialValues: {
             titolo: get(curEvent, 'titolo', null),
@@ -188,6 +208,7 @@ const mapStateToProps = (state, props) => {
             created: get(curEvent, 'created', null),
             createdBy: get(curEvent, 'createdBy', null),
         },
+        currentCover: coverImg,
         titolo: get(curEvent, 'titolo', 'Aggiungi Nuova Ricetta'),
         id: currentId,
         update: currentId !== null,
