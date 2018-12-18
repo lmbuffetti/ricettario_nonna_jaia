@@ -18,10 +18,6 @@ import connect from 'react-redux/es/connect/connect';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import { bindActionCreators } from 'redux';
-import {
-    CSSTransition,
-    TransitionGroup,
-} from 'react-transition-group';
 import { requestsReset } from '../../actions/CommonActions';
 import { loadEvents, loadStorage } from '../../actions/firebaseActions';
 import navigation from '../../config/nav';
@@ -85,16 +81,7 @@ class AdminLayout extends Component {
                         <AppBreadcrumb />
                         <Container fluid>
                             <Suspense fallback={this.loading()}>
-                                <TransitionGroup
-                                    className="carousel"
-                                >
-                                    <CSSTransition
-                                        timeout={500}
-                                        classNames="fade"
-                                    >
-                                        {React.cloneElement(children)}
-                                    </CSSTransition>
-                                </TransitionGroup>
+                                {React.cloneElement(children)}
                             </Suspense>
                         </Container>
                     </main>

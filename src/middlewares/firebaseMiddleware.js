@@ -18,6 +18,7 @@ const fetchPlan = store => next => (action) => {
                 const listEvent = snapshot.val();
                 const event = store.getState().firebase.receips;
                 event[selectorDB] = [];
+                console.log(action.payload);
                 Object.keys(listEvent).map((item, i) => {
                     event[selectorDB].push(listEvent[item]);
                     event[selectorDB][i].id = item;

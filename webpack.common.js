@@ -2,7 +2,8 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-var webpack = require("webpack");
+const webpack = require('webpack');
+
 const ROOT_DIR = path.resolve(__dirname, '.');
 const BUILD_DIR = path.join(ROOT_DIR, 'static');
 module.exports = {
@@ -19,12 +20,12 @@ module.exports = {
     devServer: {
         contentBase: BUILD_DIR,
         port: 9001,
-        stats: "minimal",
+        stats: 'minimal',
         publicPath: '/static/',
         watchContentBase: false,
         historyApiFallback: true,
         open: false,
-        hot: false
+        hot: false,
     },
     module: {
         rules: [
@@ -51,7 +52,7 @@ module.exports = {
                 loader: 'babel-loader',
                 query: {
                     presets: ['@babel/react', '@babel/env'],
-                    plugins: ['@babel/plugin-proposal-class-properties', '@babel/plugin-syntax-dynamic-import']
+                    plugins: ['@babel/plugin-proposal-class-properties', '@babel/plugin-syntax-dynamic-import'],
                 },
             },
             {
@@ -67,19 +68,19 @@ module.exports = {
             },
             {
                 test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-                use: "url-loader?limit=10000&mimetype=application/font-woff"
+                use: 'url-loader?limit=10000&mimetype=application/font-woff',
             }, {
                 test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-                use: "url-loader?limit=10000&mimetype=application/font-woff"
+                use: 'url-loader?limit=10000&mimetype=application/font-woff',
             }, {
                 test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-                use: "url-loader?limit=10000&mimetype=application/octet-stream"
+                use: 'url-loader?limit=10000&mimetype=application/octet-stream',
             }, {
                 test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-                use: "file-loader"
+                use: 'file-loader',
             }, {
                 test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-                use: "url-loader?limit=10000&mimetype=image/svg+xml"
+                use: 'url-loader?limit=10000&mimetype=image/svg+xml',
             },
             {
                 test: /\.(jpe?g|png|gif)$/i,
@@ -94,11 +95,14 @@ module.exports = {
             root: path.join(__dirname, '../static'),
             watch: true,
         }),
-        new ExtractTextPlugin('css/main.css'),
+        new ExtractTextPlugin({
+            filename: 'css/[name].css',
+            allChunks: true,
+        }),
         new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery"
-        })
+            $: 'jquery',
+            jQuery: 'jquery',
+        }),
     ],
     resolve: {
         extensions: ['.js', '.jsx', '.css'],

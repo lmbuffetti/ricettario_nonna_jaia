@@ -3,7 +3,7 @@ import HomePage from '../../views/website/homepage';
 
 const classHome = 'htmlPage home';
 const menuAdviser = 'advisers';
-const titlePage = 'Octopus Wealth -';
+const titlePage = 'Ricettario Nonna Jaia -';
 
 export default [
     {

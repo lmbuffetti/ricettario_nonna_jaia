@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import get from 'lodash/get';
 import { Field, reduxForm } from 'redux-form';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import connect from 'react-redux/es/connect/connect';
 import PropTypes from 'prop-types';
+import Cropper from 'react-cropper';
 import {
     Card,
     CardBody,
     CardHeader,
 } from 'reactstrap';
 import InputCustom from '../../components/InputCustom';
+import FileUpload from '../../components/FileUpload';
 import Select from '../../components/Select';
 import MultipleDoubleInput from '../../components/MultipleDoubleInput';
 import TextareaWysing from '../../components/TextareaWysing';
@@ -19,9 +21,19 @@ import {
     required,
 } from '../../utils/validation.helper';
 import { saveEvents, updateEvents } from '../../actions/firebaseActions';
+import 'cropperjs/dist/cropper.css';
 
 function Receips(props) {
+    const inputEl = useRef('');
     const [isSubmit] = useState(false);
+    const [crop] = useState({
+        x: 20,
+        y: 10,
+        width: 30,
+        height: 10,
+    });
+    const [img, setImg] = useState('');
+    const [newImg, setNewImg] = useState('');
     const {
         handleSaveData,
         formValue,
@@ -47,12 +59,33 @@ function Receips(props) {
             handleSaveData(body);
         }
     }
+
+    function handleFileChange(dataURI) {
+        setImg(dataURI);
+    }
+
+    function handleCrop() {
+        setNewImg(inputEl.current.cropper.getCroppedCanvas().toDataURL());
+        // console.log(e);
+    }
+
     return (
         <form>
             <Card>
                 <CardHeader className="mb-0">{titolo}</CardHeader>
                 <CardBody className="pb-medium">
                     <div>
+                        <FileUpload name="brandUpload" handleFileChange={(dataURI, name) => handleFileChange(dataURI, name)} />
+                        <Cropper
+                            ref={inputEl}
+                            src={img}
+                            style={{height: 400, width: '100%'}}
+                            // Cropper.js options
+                            aspectRatio={16 / 9}
+                            guides={false}
+                            crop={handleCrop}
+                        />
+                        <img src={newImg} alt="test" />
                         <Field
                             name="titolo"
                             component={InputCustom}

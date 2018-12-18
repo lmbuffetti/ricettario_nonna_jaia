@@ -1,6 +1,4 @@
 // Require Editor CSS files.
-@import '~froala-editor/css/froala_style.min.css';
-@import '~froala-editor/css/froala_editor.pkgd.min.css';
 @import "~@coreui/coreui/scss/coreui.scss";
 
 // Require Font Awesome.
@@ -19,4 +17,5 @@
 //MODULES
 @import "modules/inputs",
 "modules/sidebar",
+"~react-image-crop/lib/ReactCrop.scss",
 "modules/buttons";
