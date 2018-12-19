@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import get from 'lodash/get';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, change } from 'redux-form';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import connect from 'react-redux/es/connect/connect';
 import PropTypes from 'prop-types';
 import Cropper from 'react-cropper';
+import firebase from 'firebase';
 import {
     Card,
     CardBody,
@@ -21,19 +22,11 @@ import {
     required,
 } from '../../utils/validation.helper';
 import { saveEvents, updateEvents } from '../../actions/firebaseActions';
-import 'cropperjs/dist/cropper.css';
-import firebase from 'firebase';
 
 function Receips(props) {
-    const { currentCover } = props;
+    const { currentCover, changeFieldValue, arrayStorage } = props;
     const inputEl = useRef('');
     const [isSubmit] = useState(false);
-    const [crop] = useState({
-        x: 20,
-        y: 10,
-        width: 30,
-        height: 10,
-    });
     const [img, setImg] = useState('');
     const [newImg, setNewImg] = useState(null);
     const {
@@ -46,21 +39,33 @@ function Receips(props) {
         authUser,
     } = props;
 
+    useEffect(() => {
+        if (newImg === null && arrayStorage !== null) {
+            arrayStorage.then((url) => {
+                setNewImg(url);
+                console.log(url);
+                return null;
+            });
+        }
+    });
+
     function saveData(e) {
         e.preventDefault();
         const body = formValue.values;
-        const nameImg = 'test.jpg';
+        const nameImg = get(formValue, 'values.titolo', '').replace(/ /g, '').replace(/[^\w\s]/gi, '');
         const folderName = 'imgCoverRicette';
         body.selectorDB = 'Ricette';
         body.created = body.created !== null ? body.created : new Date().getTime();
         body.createdBy = body.createdBy !== null ? body.createdBy : authUser.uid;
-        body.coverImg = nameImg;
         body.modified = new Date().getTime();
+        body.coverImg = `${nameImg}.jpg`;
         body.modifiedBy = authUser.uid;
-        const storageRef = firebase.storage().ref();
-        const desertRef = storageRef.child(`${folderName}/${currentCover}`);
-        desertRef.delete();
-        storageRef.child(`${folderName}/${nameImg}`).putString(newImg.split(',')[1], 'base64', { contentType: 'image/jpg' });
+        if (typeof newImg.split(',')[1] !== 'undefined') {
+            const storageRef = firebase.storage().ref();
+            const desertRef = storageRef.child(`${folderName}/${currentCover}`);
+            desertRef.delete();
+            storageRef.child(`${folderName}/${nameImg}.jpg`).putString(newImg.split(',')[1], 'base64', { contentType: 'image/jpg' });
+        }
         if (update) {
             body.selector = id;
             handleUpdateData(body);
@@ -75,6 +80,7 @@ function Receips(props) {
 
     function handleCrop() {
         setNewImg(inputEl.current.cropper.getCroppedCanvas().toDataURL());
+        // changeFieldValue('currentCover', inputEl.current.cropper.getCroppedCanvas().toDataURL());
         // console.log(e);
     }
 
@@ -85,16 +91,26 @@ function Receips(props) {
                 <CardBody className="pb-medium">
                     <div>
                         <FileUpload name="brandUpload" handleFileChange={(dataURI, name) => handleFileChange(dataURI, name)} />
-                        <Cropper
-                            ref={inputEl}
-                            src={img}
-                            style={{height: 400, width: '100%'}}
-                            // Cropper.js options
-                            aspectRatio={16 / 9}
-                            guides={false}
-                            crop={handleCrop}
-                        />
-                        <img src={newImg || currentCover} alt="test" />
+                        {
+                            img && (
+                                <Cropper
+                                    ref={inputEl}
+                                    src={img}
+                                    style={{
+                                        height: 600, width: 1280,
+                                    }}
+                                    // Cropper.js options
+                                    aspectRatio={32 / 15}
+                                    guides={false}
+                                    crop={handleCrop}
+                                />
+                            )
+                        }
+                        {
+                            newImg && (
+                                <img src={newImg} alt="test" />
+                            )
+                        }
                         <Field
                             name="titolo"
                             component={InputCustom}
@@ -174,6 +190,8 @@ Receips.propTypes = {
     titolo: PropTypes.string,
     authUser: PropTypes.object,
     currentCover: PropTypes.string,
+    changeFieldValue: PropTypes.func.isRequired,
+    arrayStorage: PropTypes.object,
 };
 
 Receips.defaultProps = {
@@ -182,6 +200,7 @@ Receips.defaultProps = {
     titolo: null,
     authUser: null,
     currentCover: null,
+    arrayStorage: null,
 };
 
 
@@ -191,12 +210,10 @@ const mapStateToProps = (state, props) => {
     const curEvent = allEvents.find(item => item.id === currentId);
     const storageRef = firebase.storage().ref();
     const coverName = get(curEvent, 'coverImg', null);
-    let coverImg = '';
+    let coverImg;
     if (coverName !== null) {
-        storageRef.child(`imgCoverRicette/${coverName}`).getDownloadURL().then((url) => {
-            console.log(url);
-            coverImg = url;
-        });
+        coverImg = storageRef.child(`/imgCoverRicette/${coverName}`).getDownloadURL();
+        console.log(coverImg);
     }
     return ({
         initialValues: {
@@ -208,7 +225,8 @@ const mapStateToProps = (state, props) => {
             created: get(curEvent, 'created', null),
             createdBy: get(curEvent, 'createdBy', null),
         },
-        currentCover: coverImg,
+        currentCover: coverName,
+        arrayStorage: coverImg,
         titolo: get(curEvent, 'titolo', 'Aggiungi Nuova Ricetta'),
         id: currentId,
         update: currentId !== null,
@@ -226,6 +244,9 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = dispatch => ({
     handleSaveData: bindActionCreators(saveEvents, dispatch),
     handleUpdateData: bindActionCreators(updateEvents, dispatch),
+    changeFieldValue: (field, value) => {
+        dispatch(change('saveReceips', field, value));
+    },
 });
 
 const initializeForm = reduxForm({
