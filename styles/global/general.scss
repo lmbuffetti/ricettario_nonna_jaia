@@ -3,6 +3,41 @@
   margin: 0;
   box-sizing: border-box;
 }
+body {
+  background-color: #fefefe;
+  font-family: 'Spectral', 'Cormorant Garamond', 'Adobe Garamond', 'Garamond', Times, serif;
+  font-size: 1.9rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: #141414;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+}
+html {
+  font-size: 10px;
+}
+html {
+  font-size: 10px;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
 .darkVersion {
   background: $bgDark;
   a, p, h1, h2, h3, h4, h5, h6, label {
@@ -17,4 +52,27 @@ img {
 
 button {
   outline: none !important;
+}
+
+h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  font-family: 'mauerRenner', Futura, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #141414;
+  position: relative;
+  line-height: 1.32;
+  font-weight: 500;
+  letter-spacing: -0.009em;
+}
+a, .entry-full .entry-cats a, .post-card .entry-meta a:hover, .post-card .entry-meta a:focus {
+  color: #b02626;
+}
+a:hover, a:focus {
+  color: #141414;
+  text-decoration: none;
+}
+a:hover, a:focus {
+  color: #23527c;
+  text-decoration: underline;
+}
+a:active, a:hover {
+  outline: 0;
 }

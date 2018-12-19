@@ -5,6 +5,8 @@ import { reduxForm, Field } from 'redux-form';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import connect from 'react-redux/es/connect/connect';
+import Cropper from 'react-cropper';
+import firebase from 'firebase';
 import {
     Card,
     CardBody,
@@ -17,14 +19,10 @@ import { saveEvents, updateEvents } from '../../actions/firebaseActions';
 import InputCustom from '../../components/InputCustom';
 import TextareaWysing from '../../components/TextareaWysing';
 import DropzoneUpload from '../../components/DropzoneUpload';
-import firebase from 'firebase';
 import FileUpload from '../../components/FileUpload';
-import Cropper from 'react-cropper';
-import Select from '../../components/Select';
-import MultipleDoubleInput from '../../components/MultipleDoubleInput';
 
 function Blog(props) {
-    const { currentCover, changeFieldValue, arrayStorage } = props;
+    const { currentCover, arrayStorage } = props;
     const inputEl = useRef('');
     const [isSubmit] = useState(false);
     const [img, setImg] = useState('');
@@ -170,7 +168,6 @@ Blog.propTypes = {
     titolo: PropTypes.string,
     authUser: PropTypes.object,
     currentCover: PropTypes.string,
-    changeFieldValue: PropTypes.func.isRequired,
     arrayStorage: PropTypes.object,
 };
 

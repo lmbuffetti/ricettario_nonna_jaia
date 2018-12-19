@@ -24,7 +24,7 @@ import {
 import { saveEvents, updateEvents } from '../../actions/firebaseActions';
 
 function Receips(props) {
-    const { currentCover, changeFieldValue, arrayStorage } = props;
+    const { currentCover, arrayStorage } = props;
     const inputEl = useRef('');
     const [isSubmit] = useState(false);
     const [img, setImg] = useState('');
@@ -114,6 +114,23 @@ function Receips(props) {
                             )
                         }
                         <Field
+                            name="tipologia"
+                            component={Select}
+                            extraClasses=""
+                            label="Tipologia"
+                            placeholder="Select tipologia"
+                            options={[
+                                { id: 0, name: 'Antipasto', code: 'Antipasto' },
+                                { id: 1, name: 'Primo Piatto', code: 'Primo Piatto' },
+                                { id: 2, name: 'Secondo Piatto', code: 'Secondo Piatto' },
+                                { id: 3, name: 'Contorno', code: 'Contorno' },
+                                { id: 4, name: 'Dolce', code: 'Dolce' },
+                            ]}
+                            validate={[
+                                required,
+                            ]}
+                        />
+                        <Field
                             name="titolo"
                             component={InputCustom}
                             extraClasses=""
@@ -129,7 +146,7 @@ function Receips(props) {
                             component={Select}
                             extraClasses=""
                             label="Difficoltà"
-                            placeholder="Select country"
+                            placeholder="Seleziona difficoltà"
                             options={[
                                 { id: 0, name: 'Facile', code: 'facile' },
                                 { id: 0, name: 'Medio', code: 'medio' },
