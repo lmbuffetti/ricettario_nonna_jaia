@@ -62,8 +62,10 @@ function Receips(props) {
         body.modifiedBy = authUser.uid;
         if (typeof newImg.split(',')[1] !== 'undefined') {
             const storageRef = firebase.storage().ref();
-            const desertRef = storageRef.child(`${folderName}/${currentCover}`);
-            desertRef.delete();
+            if (currentCover !== null) {
+                const desertRef = storageRef.child(`${folderName}/${currentCover}`);
+                desertRef.delete();
+            }
             storageRef.child(`${folderName}/${nameImg}.jpg`).putString(newImg.split(',')[1], 'base64', { contentType: 'image/jpg' });
         }
         if (update) {

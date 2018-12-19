@@ -47,7 +47,7 @@ function Blog(props) {
                                     {moment(item.created).format('MMMM Do YYYY')}
                                 </td>
                                 <td>
-                                    <Link to={`/admin/edit-ricetta/${item.id}`}>
+                                    <Link to={`/admin/edit-blog/${item.id}`}>
                                         Modifica
                                     </Link>
                                 </td>

@@ -11,6 +11,7 @@ class AdminFooter extends Component {
                 </span>
                 <span className="ml-auto">
                     Powered by
+                    {' '}
                     <a href="https://www.linkedin.com/in/mattiabuffetti/" target="_blank" rel="noopener noreferrer">Luigi Mattia Buffetti</a>
                 </span>
             </React.Fragment>
