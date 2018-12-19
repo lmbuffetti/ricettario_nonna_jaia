@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0a6c3188-c10c-4129-abb9-24b89d4e92e3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AdminFooter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminFooter.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/admin/blog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/admin/blog.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/admin/editBlog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/admin/editBlog.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/admin/receips.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/admin/receips.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles/global/general.scss" beforeDir="false" afterPath="$PROJECT_DIR$/styles/global/general.scss" afterDir="false" />
@@ -45,8 +43,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/admin/receips.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="56" column="34" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="34" />
+            <state relative-caret-position="419">
+              <caret line="101" column="40" selection-start-line="101" selection-start-column="40" selection-end-line="101" selection-end-column="70" />
               <folding>
                 <element signature="e#0#59#0" expanded="true" />
               </folding>
@@ -54,11 +52,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/views/admin/editBlog.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="117" column="49" lean-forward="true" selection-start-line="117" selection-start-column="49" selection-end-line="117" selection-end-column="49" />
+            <state relative-caret-position="481">
+              <caret line="101" column="70" selection-start-line="101" selection-start-column="70" selection-end-line="101" selection-end-column="70" />
               <folding>
                 <element signature="e#0#59#0" expanded="true" />
               </folding>
@@ -75,11 +73,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/styles/global/general.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+            <state relative-caret-position="270">
+              <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -158,8 +156,8 @@
       <find>imgCoverRicette</find>
       <find>rece</find>
       <find>d</find>
-      <find>currentCover</find>
       <find>Ricetta</find>
+      <find>currentCover</find>
     </findStrings>
     <replaceStrings>
       <replace>admin</replace>
@@ -226,9 +224,9 @@
         <option value="$PROJECT_DIR$/styles/main.scss" />
         <option value="$PROJECT_DIR$/src/components/AdminFooter.jsx" />
         <option value="$PROJECT_DIR$/src/views/admin/blog.jsx" />
+        <option value="$PROJECT_DIR$/styles/global/general.scss" />
         <option value="$PROJECT_DIR$/src/views/admin/receips.jsx" />
         <option value="$PROJECT_DIR$/src/views/admin/editBlog.jsx" />
-        <option value="$PROJECT_DIR$/styles/global/general.scss" />
       </list>
     </option>
   </component>
@@ -416,7 +414,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545221580558" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545222184397" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -509,7 +507,7 @@
       <workItem from="1543226669476" duration="14809000" />
       <workItem from="1543247433471" duration="1454000" />
       <workItem from="1545138698844" duration="12810000" />
-      <workItem from="1545216636247" duration="4470000" />
+      <workItem from="1545216636247" duration="4934000" />
     </task>
     <task id="LOCAL-00001" summary="First Deploy">
       <created>1542638282603</created>
@@ -707,11 +705,18 @@
       <option name="project" value="LOCAL" />
       <updated>1545220670897</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Add Blog Uplaod">
+      <created>1545221626337</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1545221626337</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="117487000" />
+    <option name="totallyTimeSpent" value="117951000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1057" extended-state="6" />
@@ -769,7 +774,8 @@
     <MESSAGE value="EsLint Fix Error" />
     <MESSAGE value="Add Image Cover" />
     <MESSAGE value="Uploading a cover image will replace the existing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Uploading a cover image will replace the existing" />
+    <MESSAGE value="Add Blog Uplaod" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Blog Uplaod" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1141,26 +1147,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/admin/receips.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="56" column="34" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/admin/editBlog.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="117" column="49" lean-forward="true" selection-start-line="117" selection-start-column="49" selection-end-line="117" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/styles/global/helpers.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -1170,8 +1156,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/styles/global/general.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+        <state relative-caret-position="270">
+          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/admin/receips.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="101" column="40" selection-start-line="101" selection-start-column="40" selection-end-line="101" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/admin/editBlog.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="481">
+          <caret line="101" column="70" selection-start-line="101" selection-start-column="70" selection-end-line="101" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#59#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

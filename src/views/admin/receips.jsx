@@ -99,7 +99,7 @@ function Receips(props) {
                                     ref={inputEl}
                                     src={img}
                                     style={{
-                                        height: 600, width: 1280,
+                                        height: 'auto', width: '100%',
                                     }}
                                     // Cropper.js options
                                     aspectRatio={32 / 15}
