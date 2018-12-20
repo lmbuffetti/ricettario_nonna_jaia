@@ -1,93 +1,77 @@
 .wrapListPost {
   display: flex;
   justify-content: space-between;
-  .post-card.small {
-    padding-bottom: 6.7rem;
-  }
-  .post-card {
-    padding-bottom: 7.2rem;
-    flex: 0 0 33%;
-  }
-  .entry-thumb-link {
-    display: block;
+}
+.post-card.small {
+  padding-bottom: 6.7rem;
+}
+.post-card {
+  padding-bottom: 7.2rem;
+  flex: 0 0 33%;
+}
+.entry-thumb-link {
+  display: block;
+  position: relative;
+}
+.post-card:not(.big) .entry-thumb-link img {
+  margin-bottom: 2.5rem;
+}
+.post-card:not(.big) .entry-thumb-overlay {
+  bottom: -2.5rem;
+}
+.post-card .entry-thumb-overlay, .instafeed-thumb-overlay {
+  background-color: #fff;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  -moz-opacity: 0;
+  -khtml-opacity: 0;
+  -webkit-transition: opacity .4s ease;
+  -o-transition: opacity .4s ease;
+  transition: opacity .4s ease;
+}
+.entry-thumb-overlay, .instafeed-thumb-overlay {
+  position: absolute;
+  z-index: 101;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.post-card .entry-thumb-overlay:hover, .instafeed-thumb-overlay:hover {
+  opacity: 0.14;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=14)";
+  -moz-opacity: 0.14;
+  -khtml-opacity: 0.14;
+}
+.entry-meta, .entry-meta a {
+  font-family: 'mauerRenner', Futura, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 1.4rem;
+  letter-spacing: .04em;
+  text-transform: lowercase;
+  color: #2b2b2b;
+}
+.entry-meta {
+  color: #8a8a8a;
+}
+.entry-cats {
+  letter-spacing: .01em;
+  &:before {
+    display: inline-block;
     position: relative;
-  }
-  .post-card:not(.big) .entry-thumb-link img {
-    margin-bottom: 2.5rem;
-  }
-  .post-card:not(.big) .entry-thumb-overlay {
-    bottom: -2.5rem;
-  }
-  .post-card .entry-thumb-overlay, .instafeed-thumb-overlay {
-    background-color: #fff;
-    opacity: 0;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-    -moz-opacity: 0;
-    -khtml-opacity: 0;
-    -webkit-transition: opacity .4s ease;
-    -o-transition: opacity .4s ease;
-    transition: opacity .4s ease;
-  }
-  .entry-thumb-overlay, .instafeed-thumb-overlay {
-    position: absolute;
-    z-index: 101;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
-  .post-card .entry-thumb-overlay:hover, .instafeed-thumb-overlay:hover {
-    opacity: 0.14;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=14)";
-    -moz-opacity: 0.14;
-    -khtml-opacity: 0.14;
-  }
-  .entry-meta, .entry-meta a {
-    font-family: 'mauerRenner', Futura, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-weight: 300;
-    font-size: 1.4rem;
-    letter-spacing: .04em;
-    text-transform: lowercase;
-    color: #2b2b2b;
-  }
-  .entry-meta {
-    color: #8a8a8a;
-  }
-  .entry-cats {
-    letter-spacing: .01em;
-    &:before {
-      display: inline-block;
-      position: relative;
-      bottom: .3rem;
-      margin: 0 1.0rem 0 .6rem;
-      content: "";
-      height: 1px;
-      width: 4.0rem;
-      background-color: #8b8b8b;
-    }
-    .post-card:not(.big):not(.mauer-narrator-thumbless-entry) .entry-meta, .post-card:not(.big):not(.mauer-narrator-thumbless-entry) .entry-title, .post-card:not(.big):not(.mauer-narrator-thumbless-entry) .entry-excerpt {
-      padding-left: 1.1rem;
-    }
-    .post-card.small .entry-title {
-      font-size: 2.5rem;
-      margin: 1.8rem 0 .9rem;
-    }
-    .post-card.small .entry-title, .post-card.small .entry-excerpt {
-      padding-right: 2.4rem;
-    }
-    .post-card:not(.big) .entry-title, .post-card:not(.big) .entry-excerpt {
-      padding-right: 8.2rem;
-    }
-    .post-card .entry-title {
-      font-size: 2.7rem;
-      margin: 2.0rem 0 1.1rem;
-    }
+    bottom: .3rem;
+    margin: 0 1.0rem 0 .6rem;
+    content: "";
+    height: 1px;
+    width: 4.0rem;
+    background-color: #8b8b8b;
   }
   .post-card:not(.big):not(.mauer-narrator-thumbless-entry) .entry-meta, .post-card:not(.big):not(.mauer-narrator-thumbless-entry) .entry-title, .post-card:not(.big):not(.mauer-narrator-thumbless-entry) .entry-excerpt {
     padding-left: 1.1rem;
   }
-  .post-card.small .entry-excerpt, .post-card.big .entry-excerpt, .more-link-span {
-    font-size: 1.5rem;
+  .post-card.small .entry-title {
+    font-size: 2.5rem;
+    margin: 1.8rem 0 .9rem;
   }
   .post-card.small .entry-title, .post-card.small .entry-excerpt {
     padding-right: 2.4rem;
@@ -95,28 +79,44 @@
   .post-card:not(.big) .entry-title, .post-card:not(.big) .entry-excerpt {
     padding-right: 8.2rem;
   }
-  .post-card .entry-excerpt {
-    font-size: 1.6rem;
-    line-height: 1.55;
-    letter-spacing: .01em;
-    font-weight: 300;
-    color: #3b3b3b;
+  .post-card .entry-title {
+    font-size: 2.7rem;
+    margin: 2.0rem 0 1.1rem;
   }
-  .more-link-span {
-    display: inline-block;
-    font-family: 'mauerRenner', Futura, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-weight: 300;
-    letter-spacing: .04em;
-    padding-right: 13px;
-  }
-  .arrowNext {
-    display: inline-block;
-    position: relative;
-    top: 0;
-    width: 23px;
-    height: 13px;
-    fill: #b02626;
-  }
+}
+.post-card:not(.big):not(.mauer-narrator-thumbless-entry) .entry-meta, .post-card:not(.big):not(.mauer-narrator-thumbless-entry) .entry-title, .post-card:not(.big):not(.mauer-narrator-thumbless-entry) .entry-excerpt {
+  padding-left: 1.1rem;
+}
+.post-card.small .entry-excerpt, .post-card.big .entry-excerpt, .more-link-span {
+  font-size: 1.5rem;
+}
+.post-card.small .entry-title, .post-card.small .entry-excerpt {
+  padding-right: 2.4rem;
+}
+.post-card:not(.big) .entry-title, .post-card:not(.big) .entry-excerpt {
+  padding-right: 8.2rem;
+}
+.post-card .entry-excerpt {
+  font-size: 1.6rem;
+  line-height: 1.55;
+  letter-spacing: .01em;
+  font-weight: 300;
+  color: #3b3b3b;
+}
+.more-link-span {
+  display: inline-block;
+  font-family: 'mauerRenner', Futura, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  letter-spacing: .04em;
+  padding-right: 13px;
+}
+.arrowNext {
+  display: inline-block;
+  position: relative;
+  top: 0;
+  width: 23px;
+  height: 13px;
+  fill: #b02626;
 }
 
 @media (min-width: 500px) {
@@ -167,4 +167,28 @@
   .post-card.small .entry-excerpt, .post-card.big .entry-excerpt, .more-link-span {
     font-size: 1.5rem;
   }
+}
+
+.single {
+  .entry-title {
+    margin-top: 4.2rem;
+    margin-bottom: 2.1rem;
+    font-size: 4.8rem;
+    letter-spacing: -0.01em;
+  }
+}
+
+.entry-content {
+  p {
+    padding-bottom: 2.1rem;
+  }
+  h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+}
+.wrapImgPost {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
 }

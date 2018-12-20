@@ -44,6 +44,13 @@ class AdminLayout extends Component {
         handleLoadEvents(bodyBis);
     }
 
+    componentDidUpdate() {
+        const { loadedFirebase, loggedUserRole, history } = this.props;
+        if (loadedFirebase && loggedUserRole !== 'admin') {
+            history.push('/');
+        }
+    }
+
     loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>;
 
     signOut(e) {
@@ -104,11 +111,15 @@ AdminLayout.propTypes = {
     handleLoadEvents: PropTypes.func.isRequired,
     userName: PropTypes.string,
     handleLoadStorage: PropTypes.func.isRequired,
+    loggedUserRole: PropTypes.string,
+    loadedFirebase: PropTypes.bool,
 };
 AdminLayout.defaultProps = {
     // isLoading: true,
     location: '',
     userName: null,
+    loadedFirebase: false,
+    loggedUserRole: null,
 };
 
 const mapStateToProps = (state) => {
@@ -121,7 +132,7 @@ const mapStateToProps = (state) => {
         loggedUser: get(state, 'firebaseOption.profile.providerData[0]', null),
         userName: get(state, 'firebaseOption.profile.providerData[0].displayName', null),
         loggedUserRole: get(state, 'firebaseOption.profile.role', null),
-        loadedFirebase: get(state, 'firebaseOption.auth.isLoaded', null),
+        loadedFirebase: get(state, 'firebaseOption.auth.isLoaded', false),
     });
 };
 

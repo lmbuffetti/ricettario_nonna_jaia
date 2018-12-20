@@ -22,7 +22,7 @@ module.exports = {
         port: 9001,
         stats: 'minimal',
         publicPath: '/static/',
-        watchContentBase: false,
+        watchContentBase: true,
         historyApiFallback: true,
         open: false,
         hot: false,
@@ -92,7 +92,7 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(['js'], {
-            root: path.join(__dirname, '../static'),
+            root: path.join(__dirname, '/static'),
             watch: true,
         }),
         new ExtractTextPlugin({

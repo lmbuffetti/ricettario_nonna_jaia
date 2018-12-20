@@ -209,7 +209,6 @@ Receips.propTypes = {
     titolo: PropTypes.string,
     authUser: PropTypes.object,
     currentCover: PropTypes.string,
-    changeFieldValue: PropTypes.func.isRequired,
     arrayStorage: PropTypes.object,
 };
 

@@ -22,7 +22,7 @@ class homepage extends Component {
                 <div className="container wrapListPost">
                     {
                         receipsList.map((dataValue, dataIndex) => (
-                            <Fragment>
+                            <Fragment key={dataIndex.toString()}>
                                 {
                                     dataIndex === 0 ? (
                                         <div className="big-latest-back mt-medium">
@@ -44,9 +44,6 @@ class homepage extends Component {
                                                         <h1 className="entry-title">
                                                             <a href={`/ricette/${dataValue.titolo.replace(/ /g, '').replace(/[^\w\s]/gi, '')}`}>
                                                                 {dataValue.titolo}
-                                                                <span className="hide-below-500" />
-                                                                <span className="show-above-500">&nbsp;</span>
-                                                                {dataValue.tipologia}
                                                             </a>
                                                         </h1>
                                                         <div className="entry-excerpt clearfix">
@@ -72,7 +69,6 @@ class homepage extends Component {
                                         </div>
                                     ) : (
                                         <div
-                                            key={dataIndex.toString()}
                                             className="post-card small post-20 post type-post status-publish format-standard has-post-thumbnail hentry category-architecture tag-cities tag-photography tag-tips mt-medium"
                                         >
                                             <a href={`/ricette/${dataValue.titolo.replace(/ /g, '').replace(/[^\w\s]/gi, '')}`}>
@@ -88,9 +84,6 @@ class homepage extends Component {
                                             <h1 className="entry-title">
                                                 <a href={`/ricette/${dataValue.titolo}`}>
                                                     {dataValue.titolo}
-                                                    <span className="hide-below-500" />
-                                                    <span className="show-above-500">&nbsp;</span>
-                                                    {dataValue.tipologia}
                                                 </a>
                                             </h1>
                                             <div className="entry-excerpt clearfix">
@@ -124,8 +117,7 @@ homepage.defaultProps = {
     receipsList: [],
 };
 
-const mapStateToProps = (state, props) => ({
-    orderSlide: get(props, 'location.state.order', null),
+const mapStateToProps = state => ({
     receipsList: get(state, 'firebase.receips.Ricette', []),
 });
 
