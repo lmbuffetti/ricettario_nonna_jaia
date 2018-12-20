@@ -26,6 +26,7 @@ const rrfConfig = {
     profileFactory: user => ({
         email: user.email || user.providerData[0].email,
         role: 'user',
+        isAdmin: false,
         providerData: user.providerData,
     }),
     fileMetadataFactory: (uploadRes, Firebase, metadata, downloadURL) => {

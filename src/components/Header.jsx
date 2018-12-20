@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import LoginButton from './Login';
 import logo from '../../static/img/logo.png';
 import logoWhite from '../../static/img/logoWhite.png';
+import ModalLogin from './ModalLogin';
 
 function Header(props) {
+    const [login, setLogin] = useState(false)
     const {
         user,
         role,
         dark,
         extraClass,
     } = props;
+
     return (
         <header id="mainHeader">
             <div className={`${extraClass} dis-f ali-c jus-bt mar-a`}>
@@ -18,8 +20,24 @@ function Header(props) {
                 {
                     role !== null ?
                         <span>{`Hi ${user.displayName}`}</span>
-                        :
-                        <LoginButton />
+                        : (
+                            <div id="modalLogin">
+                                <button
+                                    type="button"
+                                    onClick={() => setLogin(true)}
+                                >
+                                    Login
+                                </button>
+                                <ModalLogin
+                                    modalTitle="Login"
+                                    visible={login}
+                                    handleCancel=""
+                                    textBackButton="Close"
+                                    closeButton
+                                    onBlurClick={() => setLogin(false)}
+                                />
+                            </div>
+                        )
                 }
             </div>
         </header>

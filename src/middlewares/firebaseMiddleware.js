@@ -31,9 +31,18 @@ const fetchPlan = store => next => (action) => {
         case SAVE_EVENTS: {
             const { selectorDB } = action.payload;
             delete action.payload.selectorDB;
-            firebase.database().ref(`${selectorDB}/`).push(
-                action.payload,
-            );
+            const { selectorID } = action.payload;
+            delete action.payload.selectorID;
+            console.log(selectorDB, selectorID);
+            if (selectorID) {
+                firebase.database().ref(`${selectorDB}/${selectorID}/`).push(
+                    action.payload,
+                );
+            } else {
+                firebase.database().ref(`${selectorDB}/`).push(
+                    action.payload,
+                );
+            }
             store.dispatch({ type: LOAD_EVENTS, payload: { selectorDB } });
             break;
         }

@@ -33,8 +33,8 @@ class singlePost extends Component {
                                 <div className="subcontainer entry-content" dangerouslySetInnerHTML={{ __html: currentReceip.description }} />
                                 <div className="wrapImgPost">
                                     {
-                                        currentReceip.images.map(img => (
-                                            <FirebaseImage imgStorage={`imgRicette/${img}`} />
+                                        currentReceip.images.map((img, imgID) => (
+                                            <FirebaseImage key={imgID.toString()} imgStorage={`imgRicette/${img}`} />
                                         ))
                                     }
                                 </div>
@@ -59,7 +59,6 @@ const mapStateToProps = (state, props) => {
     const titleURL = get(props, 'match.params.title', null);
     const receipsList = get(state, 'firebase.receips.Ricette', []);
     const currentReceip = receipsList.find(item => item.titolo.replace(/ /g, '').replace(/[^\w\s]/gi, '') === titleURL);
-    console.log(currentReceip);
     return ({
         currentReceip: currentReceip || null,
     });

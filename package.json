@@ -8,7 +8,7 @@
     "build": "webpack --config webpack.prod.js",
     "build-local": "webpack --config webpack.prod.js  -d --watch",
     "eslint": "eslint src --config .eslintrc",
-    "start-server": "webpack-dev-server --config webpack.dev.js -d --watch",
+    "start-server": "webpack-dev-server --https --config webpack.dev.js -d --watch",
     "test-server": "webpack-dev-server"
   },
   "dependencies": {

@@ -58,7 +58,7 @@ class homepage extends Component {
                                                     </div>
                                                 </div>
                                                 <div className="col-md-7">
-                                                    <a href="http://narrator.mauer.co/predicting-aesthetics-of-the-future/" className="entry-thumb-link">
+                                                    <a href={`/ricette/${dataValue.titolo.replace(/ /g, '').replace(/[^\w\s]/gi, '')}`} className="entry-thumb-link">
                                                         <div className="entry-thumb-wrapper">
                                                             <FirebaseImage imgStorage={`imgCoverRicette/${dataValue.coverImg}`} />
                                                             <div className="entry-thumb-overlay" />
@@ -78,7 +78,7 @@ class homepage extends Component {
                                             <div className="entry-meta">
                                                 <span className="entry-date">{moment(dataValue.created).format('ll')}</span>
                                                 <span className="entry-cats">
-                                                    <a href="http://narrator.mauer.co/category/architecture/" rel="category tag">{dataValue.tipologia}</a>
+                                                    <a href={`/ricette/${dataValue.titolo.replace(/ /g, '').replace(/[^\w\s]/gi, '')}`} rel="category tag">{dataValue.tipologia}</a>
                                                 </span>
                                             </div>
                                             <h1 className="entry-title">
