@@ -15,7 +15,6 @@ class singlePost extends Component {
 
     render() {
         const { currentReceip } = this.props;
-        console.log(currentReceip);
         return (
             <div className="App build_page single">
                 <div className="container">
@@ -52,7 +51,13 @@ singlePost.propTypes = {
 };
 
 singlePost.defaultProps = {
-    currentReceip: null,
+    currentReceip: [
+        {
+            tiotolo: 'test',
+            created: 150933123,
+            tipologia: 'Primo piatto',
+        },
+    ],
 };
 
 const mapStateToProps = (state, props) => {

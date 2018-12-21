@@ -6,6 +6,20 @@
     max-width: 150px;
   }
 }
+#mainMenu {
+  ul {
+    li {
+      list-style: none;
+      display: inline-block;
+      button {
+        background: transparent;
+        border: transparent;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
 .app-header {
   background: #2f353a;
   a.navbar-brand > img {

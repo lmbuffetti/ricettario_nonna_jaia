@@ -22,12 +22,18 @@ function Header(props) {
                         <span>{`Hi ${user.displayName}`}</span>
                         : (
                             <div id="modalLogin">
-                                <button
-                                    type="button"
-                                    onClick={() => setLogin(true)}
-                                >
-                                    Login
-                                </button>
+                                <nav id="mainMenu">
+                                    <ul>
+                                        <li>
+                                            <button
+                                                type="button"
+                                                onClick={() => setLogin(true)}
+                                            >
+                                                Login
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </nav>
                                 <ModalLogin
                                     modalTitle="Login"
                                     visible={login}
