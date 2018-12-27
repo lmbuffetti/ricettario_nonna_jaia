@@ -47,7 +47,7 @@ class AdminLayout extends Component {
     componentDidUpdate() {
         const { loadedFirebase, loggedUserRole, history } = this.props;
         if (loadedFirebase && loggedUserRole !== 'admin') {
-            history.push('/');
+            // history.push('/');
         }
     }
 

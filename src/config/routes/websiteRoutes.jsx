@@ -23,7 +23,7 @@ export default [
     {
         exact: true,
         layout: WebsiteLayout,
-        path: '/:type/:title',
+        path: '/sit/:type/:title',
         component: singlePost,
         classPage: classHome,
         menu: 'website',
