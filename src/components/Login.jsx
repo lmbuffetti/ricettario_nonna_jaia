@@ -13,10 +13,10 @@ import { saveEvents, updateEvents } from '../actions/firebaseActions';
 
 export const LoginPage = (props) => {
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [error, setError] = useState(null);
     const {
         firebase,
         formValue,
-        handleSaveData,
         handleUpdateData,
     } = props;
 
@@ -45,9 +45,10 @@ export const LoginPage = (props) => {
                     uid: '',
                 }];
                 handleUpdateData(body);
+                setError(null);
                 return null;
-            }).catch((error) => {
-                return null;
+            }).catch(() => {
+                setError('Register error');
                 // Handle Errors here.
                 // var errorCode = error.code;
                 // let errorMessage = error.message;
@@ -91,6 +92,13 @@ export const LoginPage = (props) => {
                         required,
                     ]}
                 />
+                {
+                    error && (
+                        <div>
+                            {error}
+                        </div>
+                    )
+                }
             </form>
             <div className="modal-text-action">
                 <button
@@ -98,14 +106,14 @@ export const LoginPage = (props) => {
                     className="btn btn-purple"
                     onClick={() => firebase.login({ provider: 'facebook', type: 'popup' })}
                 >
-                    Google
+                    Facebook
                 </button>
                 <button
                     type="button"
                     className="btn btn-purple ml-1rem"
                     onClick={() => firebase.login({ provider: 'google', type: 'popup' })}
                 >
-                    Facebook
+                    Google
                 </button>
                 <button
                     type="button"
@@ -125,7 +133,6 @@ LoginPage.propTypes = {
         auth: PropTypes.func.isRequired,
     }).isRequired,
     formValue: PropTypes.object.isRequired,
-    handleSaveData: PropTypes.func.isRequired,
     handleUpdateData: PropTypes.func.isRequired,
 };
 

@@ -5,7 +5,7 @@ import logoWhite from '../../static/img/logoWhite.png';
 import ModalLogin from './ModalLogin';
 
 function Header(props) {
-    const [login, setLogin] = useState(false)
+    const [login, setLogin] = useState(false);
     const {
         user,
         role,

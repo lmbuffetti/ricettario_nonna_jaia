@@ -1,275 +1,113 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import get from 'lodash/get';
-import { Field, reduxForm, change } from 'redux-form';
 import { bindActionCreators } from 'redux';
-import { withRouter } from 'react-router-dom';
-import connect from 'react-redux/es/connect/connect';
 import PropTypes from 'prop-types';
-import Cropper from 'react-cropper';
-import firebase from 'firebase';
+import { withRouter, Link } from 'react-router-dom';
+import connect from 'react-redux/es/connect/connect';
+import moment from 'moment';
 import {
     Card,
     CardBody,
     CardHeader,
+    Col,
+    Row,
+    Table,
 } from 'reactstrap';
-import InputCustom from '../../components/InputCustom';
-import FileUpload from '../../components/FileUpload';
-import Select from '../../components/Select';
-import MultipleDoubleInput from '../../components/MultipleDoubleInput';
-import TextareaWysing from '../../components/TextareaWysing';
-import DropzoneUpload from '../../components/DropzoneUpload';
-import {
-    required,
-} from '../../utils/validation.helper';
-import { saveEvents, updateEvents } from '../../actions/firebaseActions';
+import { requestsReset } from '../../actions/CommonActions';
 
 function Receips(props) {
-    const { currentCover, arrayStorage } = props;
-    const inputEl = useRef('');
-    const [isSubmit] = useState(false);
-    const [img, setImg] = useState('');
-    const [newImg, setNewImg] = useState(null);
     const {
-        handleSaveData,
-        formValue,
-        update,
-        id,
-        handleUpdateData,
-        titolo,
-        authUser,
+        receipsList,
+        usersList,
     } = props;
 
+    const [receips, setReceips] = useState(receipsList);
     useEffect(() => {
-        if (newImg === null && arrayStorage !== null) {
-            arrayStorage.then((url) => {
-                setNewImg(url);
-                console.log(url);
-                return null;
-            });
+        if (JSON.stringify(receips) !== JSON.stringify(receipsList)) {
+            setReceips(receipsList);
         }
     });
-
-    function saveData(e) {
-        e.preventDefault();
-        const body = formValue.values;
-        const nameImg = get(formValue, 'values.titolo', '').replace(/ /g, '').replace(/[^\w\s]/gi, '');
-        const folderName = 'imgCoverRicette';
-        body.selectorDB = 'Ricette';
-        body.created = body.created !== null ? body.created : new Date().getTime();
-        body.createdBy = body.createdBy !== null ? body.createdBy : authUser.uid;
-        body.modified = new Date().getTime();
-        body.coverImg = `${nameImg}.jpg`;
-        body.modifiedBy = authUser.uid;
-        if (typeof newImg.split(',')[1] !== 'undefined') {
-            const storageRef = firebase.storage().ref();
-            if (currentCover !== null) {
-                const desertRef = storageRef.child(`${folderName}/${currentCover}`);
-                desertRef.delete();
-            }
-            storageRef.child(`${folderName}/${nameImg}.jpg`).putString(newImg.split(',')[1], 'base64', { contentType: 'image/jpg' });
-        }
-        if (update) {
-            body.selector = id;
-            handleUpdateData(body);
-        } else {
-            handleSaveData(body);
-        }
+    function renderTable() {
+        return (
+            <tbody>
+                {
+                    receips.map((item) => {
+                        const currentUser = usersList.find(subitem => item.createdBy === subitem.id);
+                        let username;
+                        if (typeof currentUser !== 'undefined') {
+                            username = currentUser.providerData[0].displayName;
+                        }
+                        return (
+                            <tr key={item.id}>
+                                <td>
+                                    {item.titolo}
+                                </td>
+                                <td>
+                                    {username}
+                                </td>
+                                <td>
+                                    {moment(item.created).format('MMMM Do YYYY')}
+                                </td>
+                                <td>
+                                    <Link to={`/admin/edit-receip/${item.id}`}>
+                                        Modifica
+                                    </Link>
+                                </td>
+                            </tr>
+                        );
+                    })
+                }
+            </tbody>
+        );
     }
-
-    function handleFileChange(dataURI) {
-        setImg(dataURI);
-    }
-
-    function handleCrop() {
-        setNewImg(inputEl.current.cropper.getCroppedCanvas().toDataURL());
-        // changeFieldValue('currentCover', inputEl.current.cropper.getCroppedCanvas().toDataURL());
-        // console.log(e);
-    }
-
     return (
-        <form>
+        <Fragment>
             <Card>
-                <CardHeader className="mb-0">{titolo}</CardHeader>
-                <CardBody className="pb-medium">
-                    <div>
-                        <FileUpload name="brandUpload" handleFileChange={(dataURI, name) => handleFileChange(dataURI, name)} />
-                        {
-                            img && (
-                                <Cropper
-                                    ref={inputEl}
-                                    src={img}
-                                    style={{
-                                        height: 'auto', width: '100%',
-                                    }}
-                                    // Cropper.js options
-                                    aspectRatio={32 / 15}
-                                    guides={false}
-                                    crop={handleCrop}
-                                />
-                            )
-                        }
-                        {
-                            newImg && (
-                                <img src={newImg} alt="test" />
-                            )
-                        }
-                        <Field
-                            name="tipologia"
-                            component={Select}
-                            extraClasses=""
-                            label="Tipologia"
-                            placeholder="Select tipologia"
-                            options={[
-                                { id: 0, name: 'Antipasto', code: 'Antipasto' },
-                                { id: 1, name: 'Primo Piatto', code: 'Primo Piatto' },
-                                { id: 2, name: 'Secondo Piatto', code: 'Secondo Piatto' },
-                                { id: 3, name: 'Contorno', code: 'Contorno' },
-                                { id: 4, name: 'Dolce', code: 'Dolce' },
-                            ]}
-                            validate={[
-                                required,
-                            ]}
-                        />
-                        <Field
-                            name="titolo"
-                            component={InputCustom}
-                            extraClasses=""
-                            label="Nome ricetta"
-                            placeholder=""
-                            isShowErrors={isSubmit}
-                            validate={[
-                                required,
-                            ]}
-                        />
-                        <Field
-                            name="difficolta"
-                            component={Select}
-                            extraClasses=""
-                            label="Difficoltà"
-                            placeholder="Seleziona difficoltà"
-                            options={[
-                                { id: 0, name: 'Facile', code: 'facile' },
-                                { id: 0, name: 'Medio', code: 'medio' },
-                                { id: 0, name: 'Difficile', code: 'difficile' },
-                            ]}
-                            validate={[
-                                required,
-                            ]}
-                        />
-                        <MultipleDoubleInput
-                            name="ingredients"
-                            fieldsName="ingredients"
-                            extraClasses=""
-                            label="Ingredients"
-                            labelBis="Quantity"
-                        />
-
-                        <Field
-                            name="description"
-                            fieldName="description"
-                            formName="saveReceips"
-                            folderName="imgRicette"
-                            component={TextareaWysing}
-                            extraClasses=""
-                            label="Nome ricetta"
-                            placeholder=""
-                            formValue={formValue}
-                            isShowErrors={isSubmit}
-                            val={get(formValue, 'values.description', '')}
-                            validate={[
-                                required,
-                            ]}
-                        />
-                        <DropzoneUpload
-                            fieldName="images"
-                            formName="saveReceips"
-                            folderName="imgRicette"
-                            val={get(formValue, 'values.images', [])}
-                        />
-                        <button
-                            type="button"
-                            className="btn small btn-primary mt-medium"
-                            onClick={e => saveData(e)}
-                        >
-                            SAVE
-                        </button>
-                    </div>
+                <CardHeader className="mb-0">Lista Ricette</CardHeader>
+                <CardBody className="pb-0">
+                    <Row>
+                        <Col xs="12" md="12" xl="12">
+                            <Table>
+                                <thead>
+                                    <tr>
+                                        <th>Nome ricetta</th>
+                                        <th>Autore</th>
+                                        <th>Data di Creazione</th>
+                                        <th>Azioni</th>
+                                    </tr>
+                                </thead>
+                                {renderTable()}
+                            </Table>
+                        </Col>
+                    </Row>
                 </CardBody>
             </Card>
-        </form>
+        </Fragment>
     );
 }
 
 Receips.propTypes = {
-    handleSaveData: PropTypes.func.isRequired,
-    formValue: PropTypes.object.isRequired,
-    update: PropTypes.string,
-    id: PropTypes.string,
-    handleUpdateData: PropTypes.func.isRequired,
-    titolo: PropTypes.string,
-    authUser: PropTypes.object,
-    currentCover: PropTypes.string,
-    arrayStorage: PropTypes.object,
+    receipsList: PropTypes.arrayOf(PropTypes.object),
+    usersList: PropTypes.arrayOf(PropTypes.object),
 };
 
 Receips.defaultProps = {
-    update: null,
-    id: null,
-    titolo: null,
-    authUser: null,
-    currentCover: null,
-    arrayStorage: null,
+    receipsList: [],
+    usersList: [],
 };
 
-
-const mapStateToProps = (state, props) => {
-    const currentId = get(props, 'match.params.id', null);
-    const allEvents = get(state, 'firebase.receips["Ricette"]', []);
-    const curEvent = allEvents.find(item => item.id === currentId);
-    const storageRef = firebase.storage().ref();
-    const coverName = get(curEvent, 'coverImg', null);
-    let coverImg;
-    if (coverName !== null) {
-        coverImg = storageRef.child(`/imgCoverRicette/${coverName}`).getDownloadURL();
-        console.log(coverImg);
-    }
-    return ({
-        initialValues: {
-            titolo: get(curEvent, 'titolo', null),
-            difficolta: get(curEvent, 'difficolta', null),
-            ingredients: get(curEvent, 'ingredients', null),
-            description: get(curEvent, 'description', null),
-            images: get(curEvent, 'images', []),
-            created: get(curEvent, 'created', null),
-            createdBy: get(curEvent, 'createdBy', null),
-        },
-        currentCover: coverName,
-        arrayStorage: coverImg,
-        titolo: get(curEvent, 'titolo', 'Aggiungi Nuova Ricetta'),
-        id: currentId,
-        update: currentId !== null,
-        user: get(state, 'user', {}),
-        users: get(state, 'users', {}),
-        isLoading: get(state, 'common.isLoading', 1),
-        loggedUser: get(state, 'firebaseOption.profile.providerData[0]', null),
-        authUser: get(state, 'firebaseOption.auth', null),
-        loggedUserRole: get(state, 'firebaseOption.profile.role', null),
-        loadedFirebase: get(state, 'firebaseOption.auth.isLoaded', null),
-        formValue: get(state, 'form.saveReceips', null),
-    });
-};
-
-const mapDispatchToProps = dispatch => ({
-    handleSaveData: bindActionCreators(saveEvents, dispatch),
-    handleUpdateData: bindActionCreators(updateEvents, dispatch),
-    changeFieldValue: (field, value) => {
-        dispatch(change('saveReceips', field, value));
-    },
+const mapStateToProps = state => ({
+    user: get(state, 'user', {}),
+    users: get(state, 'users', {}),
+    isLoading: get(state, 'common.isLoading', 1),
+    loggedUser: get(state, 'firebase.profile.providerData[0]', null),
+    loggedUserRole: get(state, 'firebase.profile.role', null),
+    receipsList: get(state, 'firebase.receips["Receips"]', []),
+    usersList: get(state, 'firebase.receips["users"]', []),
 });
 
-const initializeForm = reduxForm({
-    form: 'saveReceips',
-    enableReinitialize: true,
-})(Receips);
+const mapDispatchToProps = dispatch => ({
+    handleRequestsReset: bindActionCreators(requestsReset, dispatch),
+});
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(initializeForm));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Receips));

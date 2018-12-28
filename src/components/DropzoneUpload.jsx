@@ -8,7 +8,7 @@ import firebase from 'firebase';
 import { change } from 'redux-form';
 
 // Path within Database for metadata (also used for file Storage path)
-const filesPath = 'imgRicette';
+const filesPath = 'imgReceips';
 
 function Uploader(props) {
     const {

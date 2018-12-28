@@ -2,8 +2,8 @@ import React from 'react';
 
 const AdminLayout = React.lazy(() => import('../../views/layouts/AdminLayout'));
 const Dashboard = React.lazy(() => import('../../views/admin/dashboard'));
-const Ricette = React.lazy(() => import('../../views/admin/ricette'));
 const Receips = React.lazy(() => import('../../views/admin/receips'));
+const EditReceips = React.lazy(() => import('../../views/admin/editReceips'));
 const Blog = React.lazy(() => import('../../views/admin/blog'));
 const EditBlog = React.lazy(() => import('../../views/admin/editBlog'));
 
@@ -28,20 +28,7 @@ export default [
     {
         exact: true,
         layout: AdminLayout,
-        path: '/admin/ricette',
-        component: Ricette,
-        classPage: classHome,
-        menu: 'admin',
-        menuFooter: menuAdviser,
-        menuName: '',
-        menuPosition: 'scroll_header',
-        titlePage: `${titlePage} Homepage`,
-        titleHeader: `${titlePage} Homepage`,
-    },
-    {
-        exact: true,
-        layout: AdminLayout,
-        path: '/admin/edit-ricetta',
+        path: '/admin/receips',
         component: Receips,
         classPage: classHome,
         menu: 'admin',
@@ -54,7 +41,20 @@ export default [
     {
         exact: true,
         layout: AdminLayout,
-        path: '/admin/edit-ricetta/:id',
+        path: '/admin/edit-receip',
+        component: EditReceips,
+        classPage: classHome,
+        menu: 'admin',
+        menuFooter: menuAdviser,
+        menuName: '',
+        menuPosition: 'scroll_header',
+        titlePage: `${titlePage} Homepage`,
+        titleHeader: `${titlePage} Homepage`,
+    },
+    {
+        exact: true,
+        layout: AdminLayout,
+        path: '/admin/edit-receip/:id',
         component: Receips,
         classPage: classHome,
         menu: 'admin',

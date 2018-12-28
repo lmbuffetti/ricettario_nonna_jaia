@@ -34,20 +34,20 @@ class AdminLayout extends Component {
             handleLoadStorage,
         } = this.props;
         const body = {};
-        body.selectorDB = 'Ricette';
+        body.selectorDB = 'Receips';
         handleLoadEvents(body);
         const bodyBis = {};
         bodyBis.selectorDB = 'Blog';
         handleLoadEvents(bodyBis);
-        handleLoadStorage('Ricette');
+        handleLoadStorage('Receips');
         bodyBis.selectorDB = 'users';
         handleLoadEvents(bodyBis);
     }
 
     componentDidUpdate() {
         const { loadedFirebase, loggedUserRole, history } = this.props;
-        if (loadedFirebase && loggedUserRole !== 'admin') {
-            // history.push('/');
+        if (loadedFirebase && !loggedUserRole !== true) {
+            history.push('/');
         }
     }
 
@@ -131,7 +131,7 @@ const mapStateToProps = (state) => {
         firebaseLoaded: get(state, 'firebaseOption.auth.isLoaded', false),
         loggedUser: get(state, 'firebaseOption.profile.providerData[0]', null),
         userName: get(state, 'firebaseOption.profile.providerData[0].displayName', null),
-        loggedUserRole: get(state, 'firebaseOption.profile.role', null),
+        loggedUserRole: get(state, 'firebaseOption.profile.isAdmin', null),
         loadedFirebase: get(state, 'firebaseOption.auth.isLoaded', false),
     });
 };

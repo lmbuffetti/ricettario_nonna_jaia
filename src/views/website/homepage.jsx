@@ -34,23 +34,23 @@ class homepage extends Component {
                                                         <div className="big-latest-textual-side">
                                                             <div className="entry-meta">
                                                                 <span className="entry-date">
-                                                                    <a href={`/ricette/${dataValue.titolo.replace(/ /g, '').replace(/[^\w\s]/gi, '')}`}>
+                                                                    <a href={`/ricetta/${dataValue.titolo.replace(/ /g, '').replace(/[^\w\s]/gi, '')}`}>
                                                                         {moment(dataValue.created).format('ll')}
                                                                     </a>
                                                                 </span>
                                                                 <span className="entry-cats">
-                                                                    <a href={`/ricette/${dataValue.titolo.replace(/ /g, '').replace(/[^\w\s]/gi, '')}`}>{dataValue.tipologia}</a>
+                                                                    <a href={`/ricetta/${dataValue.titolo.replace(/ /g, '').replace(/[^\w\s]/gi, '')}`}>{dataValue.tipologia}</a>
                                                                 </span>
                                                             </div>
                                                             <h1 className="entry-title">
-                                                                <a href={`/ricette/${dataValue.titolo.replace(/ /g, '').replace(/[^\w\s]/gi, '')}`}>
+                                                                <a href={`/ricetta/${dataValue.titolo.replace(/ /g, '').replace(/[^\w\s]/gi, '')}`}>
                                                                     {dataValue.titolo}
                                                                 </a>
                                                             </h1>
                                                             <div className="entry-excerpt clearfix">
                                                                 <p dangerouslySetInnerHTML={{ __html: clearString(dataValue.description, 95) }} />
                                                                 <div className="more-link-holder">
-                                                                    <a className="more-link" href={`/ricette/${dataValue.titolo.replace(/ /g, '').replace(/[^\w\s]/gi, '')}`}>
+                                                                    <a className="more-link" href={`/ricetta/${dataValue.titolo.replace(/ /g, '').replace(/[^\w\s]/gi, '')}`}>
                                                                         <span className="more-link-span">read</span>
                                                                         <img src={arrow} alt="arrow" className="arrowNext" />
                                                                     </a>
@@ -60,11 +60,11 @@ class homepage extends Component {
                                                     </div>
                                                     <div className="col-md-7">
                                                         <a
-                                                            href={`/ricette/${dataValue.titolo.replace(/ /g, '').replace(/[^\w\s]/gi, '')}`}
+                                                            href={`/ricetta/${dataValue.titolo.replace(/ /g, '').replace(/[^\w\s]/gi, '')}`}
                                                             className="entry-thumb-link"
                                                         >
                                                             <div className="entry-thumb-wrapper">
-                                                                <FirebaseImage imgStorage={`imgCoverRicette/${dataValue.coverImg}`} />
+                                                                <FirebaseImage imgStorage={`imgCoverReceips/${dataValue.coverImg}`} />
                                                                 <div className="entry-thumb-overlay" />
                                                             </div>
                                                         </a>
@@ -76,27 +76,27 @@ class homepage extends Component {
                                                 className="post-card small post-20 post type-post status-publish format-standard has-post-thumbnail hentry category-architecture tag-cities tag-photography tag-tips mt-medium"
                                             >
                                                 <a
-                                                    href={`/ricette/${dataValue.titolo.replace(/ /g, '').replace(/[^\w\s]/gi, '')}`}
+                                                    href={`/ricetta/${dataValue.titolo.replace(/ /g, '').replace(/[^\w\s]/gi, '')}`}
                                                     className="entry-thumb-link"
                                                 >
-                                                    <FirebaseImage imgStorage={`imgCoverRicette/${dataValue.coverImg}`} />
+                                                    <FirebaseImage imgStorage={`imgCoverReceips/${dataValue.coverImg}`} />
                                                     <div className="entry-thumb-overlay" />
                                                 </a>
                                                 <div className="entry-meta">
                                                     <span className="entry-date">{moment(dataValue.created).format('ll')}</span>
                                                     <span className="entry-cats">
-                                                        <a href={`/ricette/${dataValue.titolo.replace(/ /g, '').replace(/[^\w\s]/gi, '')}`} rel="category tag">{dataValue.tipologia}</a>
+                                                        <a href={`/ricetta/${dataValue.titolo.replace(/ /g, '').replace(/[^\w\s]/gi, '')}`} rel="category tag">{dataValue.tipologia}</a>
                                                     </span>
                                                 </div>
                                                 <h1 className="entry-title">
-                                                    <a href={`/ricette/${dataValue.titolo}`}>
+                                                    <a href={`/ricetta/${dataValue.titolo}`}>
                                                         {dataValue.titolo}
                                                     </a>
                                                 </h1>
                                                 <div className="entry-excerpt clearfix">
                                                     <p dangerouslySetInnerHTML={{ __html: clearString(dataValue.description, 95) }} />
                                                     <div className="more-link-holder">
-                                                        <a className="more-link" href={`/ricette/${dataValue.titolo.replace(/ /g, '').replace(/[^\w\s]/gi, '')}`}>
+                                                        <a className="more-link" href={`/ricetta/${dataValue.titolo.replace(/ /g, '').replace(/[^\w\s]/gi, '')}`}>
                                                             <span className="more-link-span">read</span>
                                                             <img src={arrow} alt="arrow" className="arrowNext" />
                                                         </a>
@@ -126,11 +126,11 @@ homepage.defaultProps = {
 };
 
 const mapStateToProps = (state) => {
-    const currentReceip = get(state, 'firebase.receips.Ricette', []);
+    const currentReceip = get(state, 'firebase.receips.Receips', []);
     return ({
         receipsList: currentReceip,
     });
-}
+};
 
 const mapDispatchToProps = () => ({
 });

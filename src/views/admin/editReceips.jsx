@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useRef, useEffect } from 'react';
 import get from 'lodash/get';
-import { reduxForm, Field } from 'redux-form';
+import { Field, reduxForm, change } from 'redux-form';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import connect from 'react-redux/es/connect/connect';
+import PropTypes from 'prop-types';
 import Cropper from 'react-cropper';
 import firebase from 'firebase';
 import {
@@ -12,16 +12,18 @@ import {
     CardBody,
     CardHeader,
 } from 'reactstrap';
+import InputCustom from '../../components/InputCustom';
+import FileUpload from '../../components/FileUpload';
+import Select from '../../components/Select';
+import MultipleDoubleInput from '../../components/MultipleDoubleInput';
+import TextareaWysing from '../../components/TextareaWysing';
+import DropzoneUpload from '../../components/DropzoneUpload';
 import {
     required,
 } from '../../utils/validation.helper';
 import { saveEvents, updateEvents } from '../../actions/firebaseActions';
-import InputCustom from '../../components/InputCustom';
-import TextareaWysing from '../../components/TextareaWysing';
-import DropzoneUpload from '../../components/DropzoneUpload';
-import FileUpload from '../../components/FileUpload';
 
-function Blog(props) {
+function EditReceips(props) {
     const { currentCover, arrayStorage } = props;
     const inputEl = useRef('');
     const [isSubmit] = useState(false);
@@ -51,8 +53,8 @@ function Blog(props) {
         e.preventDefault();
         const body = formValue.values;
         const nameImg = get(formValue, 'values.titolo', '').replace(/ /g, '').replace(/[^\w\s]/gi, '');
-        const folderName = 'imgCoverBlog';
-        body.selectorDB = 'Blog';
+        const folderName = 'imgCoverReceips';
+        body.selectorDB = 'Receips';
         body.created = body.created !== null ? body.created : new Date().getTime();
         body.createdBy = body.createdBy !== null ? body.createdBy : authUser.uid;
         body.modified = new Date().getTime();
@@ -112,25 +114,64 @@ function Blog(props) {
                             )
                         }
                         <Field
+                            name="tipologia"
+                            component={Select}
+                            extraClasses=""
+                            label="Tipologia"
+                            placeholder="Select tipologia"
+                            options={[
+                                { id: 0, name: 'Antipasto', code: 'Antipasto' },
+                                { id: 1, name: 'Primo Piatto', code: 'Primo Piatto' },
+                                { id: 2, name: 'Secondo Piatto', code: 'Secondo Piatto' },
+                                { id: 3, name: 'Contorno', code: 'Contorno' },
+                                { id: 4, name: 'Dolce', code: 'Dolce' },
+                            ]}
+                            validate={[
+                                required,
+                            ]}
+                        />
+                        <Field
                             name="titolo"
                             component={InputCustom}
                             extraClasses=""
-                            label="Titolo"
+                            label="Nome receip"
                             placeholder=""
                             isShowErrors={isSubmit}
                             validate={[
                                 required,
                             ]}
                         />
+                        <Field
+                            name="difficolta"
+                            component={Select}
+                            extraClasses=""
+                            label="Difficoltà"
+                            placeholder="Seleziona difficoltà"
+                            options={[
+                                { id: 0, name: 'Facile', code: 'facile' },
+                                { id: 0, name: 'Medio', code: 'medio' },
+                                { id: 0, name: 'Difficile', code: 'difficile' },
+                            ]}
+                            validate={[
+                                required,
+                            ]}
+                        />
+                        <MultipleDoubleInput
+                            name="ingredients"
+                            fieldsName="ingredients"
+                            extraClasses=""
+                            label="Ingredients"
+                            labelBis="Quantity"
+                        />
 
                         <Field
                             name="description"
                             fieldName="description"
-                            formName="saveBlog"
+                            formName="saveReceips"
                             folderName="imgReceips"
                             component={TextareaWysing}
                             extraClasses=""
-                            label="Descrizione"
+                            label="Nome ricetta"
                             placeholder=""
                             formValue={formValue}
                             isShowErrors={isSubmit}
@@ -141,8 +182,8 @@ function Blog(props) {
                         />
                         <DropzoneUpload
                             fieldName="images"
-                            formName="saveBlog"
-                            folderName="imgBlog"
+                            formName="saveReceips"
+                            folderName="imgReceips"
                             val={get(formValue, 'values.images', [])}
                         />
                         <button
@@ -159,7 +200,7 @@ function Blog(props) {
     );
 }
 
-Blog.propTypes = {
+EditReceips.propTypes = {
     handleSaveData: PropTypes.func.isRequired,
     formValue: PropTypes.object.isRequired,
     update: PropTypes.string,
@@ -171,7 +212,7 @@ Blog.propTypes = {
     arrayStorage: PropTypes.object,
 };
 
-Blog.defaultProps = {
+EditReceips.defaultProps = {
     update: null,
     id: null,
     titolo: null,
@@ -180,20 +221,23 @@ Blog.defaultProps = {
     arrayStorage: null,
 };
 
+
 const mapStateToProps = (state, props) => {
     const currentId = get(props, 'match.params.id', null);
-    const allEvents = get(state, 'firebase.receips["Blog"]', []);
+    const allEvents = get(state, 'firebase.receips["Receips"]', []);
     const curEvent = allEvents.find(item => item.id === currentId);
     const storageRef = firebase.storage().ref();
     const coverName = get(curEvent, 'coverImg', null);
     let coverImg;
     if (coverName !== null) {
-        coverImg = storageRef.child(`/imgCoverBlog/${coverName}`).getDownloadURL();
+        coverImg = storageRef.child(`/imgCoverReceips/${coverName}`).getDownloadURL();
         console.log(coverImg);
     }
     return ({
         initialValues: {
             titolo: get(curEvent, 'titolo', null),
+            difficolta: get(curEvent, 'difficolta', null),
+            ingredients: get(curEvent, 'ingredients', null),
             description: get(curEvent, 'description', null),
             images: get(curEvent, 'images', []),
             created: get(curEvent, 'created', null),
@@ -201,7 +245,7 @@ const mapStateToProps = (state, props) => {
         },
         currentCover: coverName,
         arrayStorage: coverImg,
-        titolo: get(curEvent, 'titolo', 'Aggiungi Nuova Notizia'),
+        titolo: get(curEvent, 'titolo', 'Aggiungi Nuova Ricetta'),
         id: currentId,
         update: currentId !== null,
         user: get(state, 'user', {}),
@@ -211,18 +255,21 @@ const mapStateToProps = (state, props) => {
         authUser: get(state, 'firebaseOption.auth', null),
         loggedUserRole: get(state, 'firebaseOption.profile.role', null),
         loadedFirebase: get(state, 'firebaseOption.auth.isLoaded', null),
-        formValue: get(state, 'form.saveBlog', null),
+        formValue: get(state, 'form.saveReceips', null),
     });
 };
 
 const mapDispatchToProps = dispatch => ({
     handleSaveData: bindActionCreators(saveEvents, dispatch),
     handleUpdateData: bindActionCreators(updateEvents, dispatch),
+    changeFieldValue: (field, value) => {
+        dispatch(change('saveReceips', field, value));
+    },
 });
 
 const initializeForm = reduxForm({
-    form: 'saveBlog',
+    form: 'saveReceips',
     enableReinitialize: true,
-})(Blog);
+})(EditReceips);
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(initializeForm));

@@ -8,7 +8,7 @@ export default {
             },
             {
                 title: true,
-                name: 'Ricette',
+                name: 'Receips',
                 wrapper: {
                     element: '',
                     attributes: {},
@@ -17,12 +17,12 @@ export default {
             },
             {
                 name: 'Lista Ricette',
-                url: '/admin/ricette',
+                url: '/admin/receips',
                 icon: 'icon-list',
             },
             {
                 name: 'Aggiungi nuova',
-                url: '/admin/edit-ricetta',
+                url: '/admin/edit-receip',
                 icon: 'icon-plus',
             },
             {
