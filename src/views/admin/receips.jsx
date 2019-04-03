@@ -102,7 +102,7 @@ const mapStateToProps = state => ({
     isLoading: get(state, 'common.isLoading', 1),
     loggedUser: get(state, 'firebase.profile.providerData[0]', null),
     loggedUserRole: get(state, 'firebase.profile.role', null),
-    receipsList: get(state, 'firebase.receips["Receips"]', []),
+    receipsList: get(state, 'firebase.receips["Ricette"]', []),
     usersList: get(state, 'firebase.receips["users"]', []),
 });
 

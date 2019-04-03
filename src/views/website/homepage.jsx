@@ -126,7 +126,7 @@ homepage.defaultProps = {
 };
 
 const mapStateToProps = (state) => {
-    const currentReceip = get(state, 'firebase.receips.Receips', []);
+    const currentReceip = get(state, 'firebase.receips.Ricette', []);
     return ({
         receipsList: currentReceip,
     });

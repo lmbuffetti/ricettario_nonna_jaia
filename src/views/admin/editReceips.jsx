@@ -54,7 +54,7 @@ function EditReceips(props) {
         const body = formValue.values;
         const nameImg = get(formValue, 'values.titolo', '').replace(/ /g, '').replace(/[^\w\s]/gi, '');
         const folderName = 'imgCoverReceips';
-        body.selectorDB = 'Receips';
+        body.selectorDB = 'Ricette';
         body.created = body.created !== null ? body.created : new Date().getTime();
         body.createdBy = body.createdBy !== null ? body.createdBy : authUser.uid;
         body.modified = new Date().getTime();
@@ -224,7 +224,7 @@ EditReceips.defaultProps = {
 
 const mapStateToProps = (state, props) => {
     const currentId = get(props, 'match.params.id', null);
-    const allEvents = get(state, 'firebase.receips["Receips"]', []);
+    const allEvents = get(state, 'firebase.receips["Ricette"]', []);
     const curEvent = allEvents.find(item => item.id === currentId);
     const storageRef = firebase.storage().ref();
     const coverName = get(curEvent, 'coverImg', null);

@@ -34,7 +34,7 @@ class AdminLayout extends Component {
             handleLoadStorage,
         } = this.props;
         const body = {};
-        body.selectorDB = 'Receips';
+        body.selectorDB = 'Ricette';
         handleLoadEvents(body);
         const bodyBis = {};
         bodyBis.selectorDB = 'Blog';

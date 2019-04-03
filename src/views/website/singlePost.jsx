@@ -62,7 +62,7 @@ singlePost.defaultProps = {
 
 const mapStateToProps = (state, props) => {
     const titleURL = get(props, 'match.params.title', null);
-    const receipsList = get(state, 'firebase.receips.Receips', []);
+    const receipsList = get(state, 'firebase.receips.Ricette', []);
     const currentReceip = receipsList.find(item => item.titolo.replace(/ /g, '').replace(/[^\w\s]/gi, '') === titleURL);
     return ({
         currentReceip: currentReceip || null,
