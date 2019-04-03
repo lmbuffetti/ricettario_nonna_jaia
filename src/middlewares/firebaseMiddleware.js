@@ -1,5 +1,7 @@
 /* eslint-disable max-len */
 import firebase from 'firebase';
+import isObject from 'lodash/isObject';
+
 import {
     LOAD_EVENTS,
     SAVE_EVENTS,
@@ -19,11 +21,13 @@ const fetchPlan = store => next => (action) => {
                 const event = store.getState().firebase.receips;
                 event[selectorDB] = [];
                 console.log(action.payload);
-                Object.keys(listEvent).map((item, i) => {
-                    event[selectorDB].push(listEvent[item]);
-                    event[selectorDB][i].id = item;
-                    return null;
-                });
+                if (isObject(listEvent) && listEvent !== null && typeof listEvent !== 'undefined') {
+                    Object.keys(listEvent).map((item, i) => {
+                        event[selectorDB].push(listEvent[item]);
+                        event[selectorDB][i].id = item;
+                        return null;
+                    });
+                }
                 store.dispatch({ type: SET_EVENTS, payload: event });
             });
             break;

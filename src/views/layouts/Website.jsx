@@ -18,7 +18,7 @@ class Website extends Component {
         } = this.props;
 
         const body = {};
-        body.selectorDB = 'Receips';
+        body.selectorDB = 'Ricette';
         handleLoadEvents(body);
         handleRequestsReset();
     }
